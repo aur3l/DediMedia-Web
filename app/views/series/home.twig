@@ -80,7 +80,7 @@ $(document).ready(function(){
   <div style="width: 100px; display: inline-block; margin-left: 7px;" id="posterSizeSlider"></div>
   <div class="row" style="text-align: center; display: table-row;">
     {% for serie in series %}
-      <div class="col-md-2 col-sm-4 col-xs-4 posters">
+      <div class="col-md-1 col-sm-4 col-xs-4 posters">
         <a href="{{ path_for('serie', {'tvdbId': serie.indexerid}) }}"  class="thumbnail" data-toggle="tooltip" data-placement="top" title="Voir la serie {{serie.show_name}}">
           <img src="{{ serie.banner.small}}" alt="Vignette de {{serie.show_name}}" id="{{serie.indexerid}}">
         </a>
