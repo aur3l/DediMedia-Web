@@ -33,7 +33,6 @@
   .search-result .series-overview{height:120px}
   .firstAired{text-transform: capitalize;}
   .lead, .series-genres {font-size:15px; margin-top:0;}
-  }
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="padding:0;">
@@ -123,7 +122,7 @@
       {% else %}
         <li {% if key == 1 %}class="active"{% endif %}>
           <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">
-            {% if key == 0 %}Extra{% else %}S{{key}}{% endif %}
+            {% if key == 0 %}Extra{% else %}Saison {{key}}{% endif %}
           </a>
         </li>
       {% endif %}
