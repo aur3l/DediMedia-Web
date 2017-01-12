@@ -1,5 +1,10 @@
 {% set title = "Séries" %}
 {% extends "layout.twig" %}
+{% block js %}
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+};
+{% endblock %}
 {% block style %}
   .thumbnail{display:block;padding:4px;margin-bottom:20px;line-height:1.42857143;background-color:#fff;border:1px solid #ddd;border-radius:4px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}
   .thumbnail>img,.thumbnail a>img{margin-right:auto;margin-left:auto}
