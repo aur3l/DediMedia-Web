@@ -1,0 +1,880 @@
+[
+    {
+        "name": "container-interop/container-interop",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/container-interop/container-interop.git",
+            "reference": "fc08354828f8fd3245f77a66b9e23a6bca48297e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/container-interop/container-interop/zipball/fc08354828f8fd3245f77a66b9e23a6bca48297e",
+            "reference": "fc08354828f8fd3245f77a66b9e23a6bca48297e",
+            "shasum": ""
+        },
+        "time": "2014-12-30 15:22:37",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Interop\\Container\\": "src/Interop/Container/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Promoting the interoperability of container objects (DIC, SL, etc.)"
+    },
+    {
+        "name": "nikic/fast-route",
+        "version": "v1.1.0",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nikic/FastRoute.git",
+            "reference": "f3dcf5130e634b6123d40727d612ec6aa4f61fb3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nikic/FastRoute/zipball/f3dcf5130e634b6123d40727d612ec6aa4f61fb3",
+            "reference": "f3dcf5130e634b6123d40727d612ec6aa4f61fb3",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2016-10-20 17:36:47",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "FastRoute\\": "src/"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Nikita Popov",
+                "email": "nikic@php.net"
+            }
+        ],
+        "description": "Fast request router for PHP",
+        "keywords": [
+            "router",
+            "routing"
+        ]
+    },
+    {
+        "name": "psr/http-message",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/http-message.git",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-08-06 14:39:51",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Http\\Message\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for HTTP messages",
+        "homepage": "https://github.com/php-fig/http-message",
+        "keywords": [
+            "http",
+            "http-message",
+            "psr",
+            "psr-7",
+            "request",
+            "response"
+        ]
+    },
+    {
+        "name": "pimple/pimple",
+        "version": "v3.0.2",
+        "version_normalized": "3.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/silexphp/Pimple.git",
+            "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+            "reference": "a30f7d6e57565a2e1a316e1baf2a483f788b258a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-09-11 15:10:35",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Pimple": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Pimple, a simple Dependency Injection Container",
+        "homepage": "http://pimple.sensiolabs.org",
+        "keywords": [
+            "container",
+            "dependency injection"
+        ]
+    },
+    {
+        "name": "slim/slim",
+        "version": "3.7.0",
+        "version_normalized": "3.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/slimphp/Slim.git",
+            "reference": "4254e40d81559e35cdf856bcbaca5f3af468b7ef"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/slimphp/Slim/zipball/4254e40d81559e35cdf856bcbaca5f3af468b7ef",
+            "reference": "4254e40d81559e35cdf856bcbaca5f3af468b7ef",
+            "shasum": ""
+        },
+        "require": {
+            "container-interop/container-interop": "^1.1",
+            "nikic/fast-route": "^1.0",
+            "php": ">=5.5.0",
+            "pimple/pimple": "^3.0",
+            "psr/http-message": "^1.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0",
+            "squizlabs/php_codesniffer": "^2.5"
+        },
+        "time": "2016-12-20 20:30:47",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Slim\\": "Slim"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Rob Allen",
+                "email": "rob@akrabat.com",
+                "homepage": "http://akrabat.com"
+            },
+            {
+                "name": "Josh Lockhart",
+                "email": "hello@joshlockhart.com",
+                "homepage": "https://joshlockhart.com"
+            },
+            {
+                "name": "Gabriel Manricks",
+                "email": "gmanricks@me.com",
+                "homepage": "http://gabrielmanricks.com"
+            },
+            {
+                "name": "Andrew Smith",
+                "email": "a.smith@silentworks.co.uk",
+                "homepage": "http://silentworks.co.uk"
+            }
+        ],
+        "description": "Slim is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs",
+        "homepage": "https://slimframework.com",
+        "keywords": [
+            "api",
+            "framework",
+            "micro",
+            "router"
+        ]
+    },
+    {
+        "name": "slim/twig-view",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/slimphp/Twig-View.git",
+            "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/slimphp/Twig-View/zipball/16fded26a44b8e8e0e041f1cff32afa21daeb284",
+            "reference": "16fded26a44b8e8e0e041f1cff32afa21daeb284",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0",
+            "psr/http-message": "^1.0",
+            "twig/twig": "^1.18"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.8.0"
+        },
+        "time": "2016-03-13 20:58:41",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Slim\\Views\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Josh Lockhart",
+                "email": "hello@joshlockhart.com",
+                "homepage": "http://joshlockhart.com"
+            }
+        ],
+        "description": "Slim Framework 3 view helper built on top of the Twig templating component",
+        "homepage": "http://slimframework.com",
+        "keywords": [
+            "framework",
+            "slim",
+            "template",
+            "twig",
+            "view"
+        ]
+    },
+    {
+        "name": "guzzlehttp/promises",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/promises.git",
+            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+            "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.0"
+        },
+        "time": "2016-12-20 10:07:11",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Promise\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle promises library",
+        "keywords": [
+            "promise"
+        ]
+    },
+    {
+        "name": "guzzlehttp/psr7",
+        "version": "1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/psr7.git",
+            "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+            "reference": "5c6447c9df362e8f8093bda8f5d8873fe5c7f65b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "psr/http-message": "~1.0"
+        },
+        "provide": {
+            "psr/http-message-implementation": "1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-06-24 23:00:38",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GuzzleHttp\\Psr7\\": "src/"
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "PSR-7 message implementation",
+        "keywords": [
+            "http",
+            "message",
+            "stream",
+            "uri"
+        ]
+    },
+    {
+        "name": "guzzlehttp/guzzle",
+        "version": "6.2.2",
+        "version_normalized": "6.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guzzle/guzzle.git",
+            "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+            "reference": "ebf29dee597f02f09f4d5bbecc68230ea9b08f60",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/promises": "^1.0",
+            "guzzlehttp/psr7": "^1.3.1",
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "ext-curl": "*",
+            "phpunit/phpunit": "^4.0",
+            "psr/log": "^1.0"
+        },
+        "time": "2016-10-08 15:01:37",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "6.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/functions_include.php"
+            ],
+            "psr-4": {
+                "GuzzleHttp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Dowling",
+                "email": "mtdowling@gmail.com",
+                "homepage": "https://github.com/mtdowling"
+            }
+        ],
+        "description": "Guzzle is a PHP HTTP client library",
+        "homepage": "http://guzzlephp.org/",
+        "keywords": [
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "rest",
+            "web service"
+        ]
+    },
+    {
+        "name": "kryptonit3/sickrage",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kryptonit3/SickRage.git",
+            "reference": "441a293b5c219c3cdd1ebebd2bcf4518598f84aa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kryptonit3/SickRage/zipball/441a293b5c219c3cdd1ebebd2bcf4518598f84aa",
+            "reference": "441a293b5c219c3cdd1ebebd2bcf4518598f84aa",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.1"
+        },
+        "time": "2016-08-08 00:57:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Kryptonit3\\SickRage\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jesse Szypulski",
+                "email": "jesse.szypulski@gmail.com"
+            }
+        ],
+        "description": "PHP Wrapper for SickRage / SickBeard API"
+    },
+    {
+        "name": "kryptonit3/couchpotato",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Kryptonit3/CouchPotato.git",
+            "reference": "7a1fc892f70f120f74ff005850e923a0f1566376"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Kryptonit3/CouchPotato/zipball/7a1fc892f70f120f74ff005850e923a0f1566376",
+            "reference": "7a1fc892f70f120f74ff005850e923a0f1566376",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.1"
+        },
+        "time": "2016-02-06 22:02:39",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Kryptonit3\\CouchPotato\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jesse Szypulski",
+                "email": "jesse.szypulski@gmail.com"
+            }
+        ],
+        "description": "PHP Wrapper for CouchPotato API"
+    },
+    {
+        "name": "moinax/tvdb",
+        "version": "v1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Moinax/TvDb.git",
+            "reference": "26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Moinax/TvDb/zipball/26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085",
+            "reference": "26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2016-10-25 08:14:27",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Moinax\\TvDb": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Moinax",
+                "email": "moinax@gmail.com"
+            }
+        ],
+        "description": "PHPTVDB is a PHP library for accessing TV show information such as episodes, actors, showtimes and descriptions.",
+        "homepage": "http://moinax.github.io/TvDb/",
+        "keywords": [
+            "api"
+        ]
+    },
+    {
+        "name": "intervention/image",
+        "version": "2.3.8",
+        "version_normalized": "2.3.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Intervention/image.git",
+            "reference": "4064a980324f6c3bfa2bd981dfb247afa705ec3c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Intervention/image/zipball/4064a980324f6c3bfa2bd981dfb247afa705ec3c",
+            "reference": "4064a980324f6c3bfa2bd981dfb247afa705ec3c",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "guzzlehttp/psr7": "~1.1",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9.2",
+            "phpunit/phpunit": "3.*"
+        },
+        "suggest": {
+            "ext-gd": "to use GD library based image processing.",
+            "ext-imagick": "to use Imagick based image processing.",
+            "intervention/imagecache": "Caching extension for the Intervention Image library"
+        },
+        "time": "2016-09-01 17:04:03",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.3-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Intervention\\Image\\": "src/Intervention/Image"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Oliver Vogel",
+                "email": "oliver@olivervogel.net",
+                "homepage": "http://olivervogel.net/"
+            }
+        ],
+        "description": "Image handling and manipulation library with support for Laravel integration",
+        "homepage": "http://image.intervention.io/",
+        "keywords": [
+            "gd",
+            "image",
+            "imagick",
+            "laravel",
+            "thumbnail",
+            "watermark"
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "v1.31.0",
+        "version_normalized": "1.31.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig.git",
+            "reference": "ddc9e3e20ee9c0b6908f401ac8353635b750eca7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/ddc9e3e20ee9c0b6908f401ac8353635b750eca7",
+            "reference": "ddc9e3e20ee9c0b6908f401ac8353635b750eca7",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.7"
+        },
+        "require-dev": {
+            "symfony/debug": "~2.7",
+            "symfony/phpunit-bridge": "~3.2"
+        },
+        "time": "2017-01-11 19:36:15",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.31-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Twig_": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com",
+                "role": "Project Founder"
+            },
+            {
+                "name": "Twig Team",
+                "homepage": "http://twig.sensiolabs.org/contributors",
+                "role": "Contributors"
+            }
+        ],
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "http://twig.sensiolabs.org",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "slim/flash",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/slimphp/Slim-Flash.git",
+            "reference": "1995ed53b77b8eeb67adf032de93c319f76aa5cd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/slimphp/Slim-Flash/zipball/1995ed53b77b8eeb67adf032de93c319f76aa5cd",
+            "reference": "1995ed53b77b8eeb67adf032de93c319f76aa5cd",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0"
+        },
+        "time": "2015-08-16 22:49:06",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Slim\\Flash\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Josh Lockhart",
+                "email": "hello@joshlockhart.com",
+                "homepage": "http://joshlockhart.com"
+            }
+        ],
+        "description": "Slim Framework Flash message service provider",
+        "homepage": "http://slimframework.com",
+        "keywords": [
+            "flash",
+            "framework",
+            "message",
+            "provider",
+            "slim"
+        ]
+    },
+    {
+        "name": "kanellov/slim-twig-flash",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kanellov/slim-twig-flash.git",
+            "reference": "6c5ecfdbf7eeb9ea44bbc6dbc4a902c1930a392c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/kanellov/slim-twig-flash/zipball/6c5ecfdbf7eeb9ea44bbc6dbc4a902c1930a392c",
+            "reference": "6c5ecfdbf7eeb9ea44bbc6dbc4a902c1930a392c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.0",
+            "slim/flash": "^0.1.0",
+            "twig/twig": "^1.18"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.*",
+            "phpunit/phpcov": "2.*",
+            "phpunit/phpunit": "4.8.0",
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2016-01-20 09:08:28",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Knlv\\Slim\\Views\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GNU GPLv3"
+        ],
+        "authors": [
+            {
+                "name": "Vassilis Kanellopoulos",
+                "email": "contact@kanellov.com",
+                "homepage": "http://kanellov.com"
+            }
+        ],
+        "description": "A Twig extension to access Slim Flash messages in templates",
+        "keywords": [
+            "extension",
+            "flash",
+            "framework",
+            "message",
+            "provider",
+            "slim",
+            "twig",
+            "view"
+        ]
+    },
+    {
+        "name": "twig/extensions",
+        "version": "v1.4.1",
+        "version_normalized": "1.4.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig-extensions.git",
+            "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+            "reference": "f0bb8431c8691f5a39f1017d9a5967a082bf01ff",
+            "shasum": ""
+        },
+        "require": {
+            "twig/twig": "~1.20|~2.0"
+        },
+        "require-dev": {
+            "symfony/translation": "~2.3"
+        },
+        "suggest": {
+            "symfony/translation": "Allow the time_diff output to be translated"
+        },
+        "time": "2016-10-25 17:34:14",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Twig_Extensions_": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Common additional features for Twig that do not directly belong in core",
+        "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
+        "keywords": [
+            "i18n",
+            "text"
+        ]
+    }
+]

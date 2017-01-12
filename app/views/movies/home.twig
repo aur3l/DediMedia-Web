@@ -1,0 +1,12 @@
+{% set title = "Films" %}
+{% extends "layout.twig" %}
+{% block content %}
+
+  <h1 class="page-header">Films</h1>
+  <pre>{{ dump(movies) }}</pre>
+
+  {% for movie in movies %}
+    {{ movie.info.original_title}}<br>
+{% endfor %}
+
+{% endblock %}
