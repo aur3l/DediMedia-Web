@@ -136,7 +136,8 @@
           <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
           {% for key, ep in episode %}
               <div class="episode col-xs-12 col-sm-6 col-md-4">
-                <div class="episode-inner" style="background-image:url('{% if ep.thumbnail != null %}http://thetvdb.com/banners/{{ep.thumbnail}}{% else %}http://thetvdb.com/banners/{{tvdb.serie.fanArt}}{% endif %}');">
+                {{ep.thumbnail}}
+                <div class="episode-inner" style="background-image:url('http://thetvdb.com/banners/{{tvdb.serie.fanArt}}');">
                   <div class="episode-content">
                     <h3>{{tvdb.serie.name}}</h3>
                     <h4><span class="label label-info">S{{ep.season}}E{{ep.number}}</span> {{ep.name}}</h4>
