@@ -33,6 +33,84 @@
   .search-result .series-overview{height:120px}
   .firstAired{text-transform: capitalize;}
   .lead, .series-genres {font-size:15px; margin-top:0;}
+
+  .transformer-tabs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 3px solid white;
+}
+.transformer-tabs li {
+  display: inline-block;
+  padding: 0;
+  vertical-align: bottom;
+}
+.transformer-tabs li:nth-child(1) .active {
+  color: #c6a0d5;
+  border-bottom-color: #9b59b6;
+}
+.transformer-tabs li:nth-child(2) .active {
+  color: #8bc4ea;
+  border-bottom-color: #3498db;
+}
+.transformer-tabs li:nth-child(3) .active {
+  color: #f0b37e;
+  border-bottom-color: #e67e22;
+}
+.transformer-tabs li:nth-child(4) .active {
+  color: #df7c72;
+  border-bottom-color: #c0392b;
+}
+.transformer-tabs a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+}
+.transformer-tabs a.active {
+  border-bottom: 3px solid transparent;
+  position: relative;
+  bottom: -3px;
+}
+@media (max-width: 700px) {
+  .transformer-tabs ul {
+    border-bottom: 0;
+    overflow: hidden;
+    position: relative;
+    background: #666;
+    /* fallback */
+    background: linear-gradient(#666, #222);
+  }
+  .transformer-tabs ul::after {
+    content: "☰";
+    position: absolute;
+    top: 8px;
+    right: 15px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .transformer-tabs ul.open a {
+    position: relative;
+    display: block;
+  }
+  .transformer-tabs li {
+    display: block;
+  }
+  .transformer-tabs a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .transformer-tabs a.active {
+    border: 0;
+    z-index: 1;
+    background: #666;
+    /* fallback */
+    background: linear-gradient(#666, #222);
+  }
+}
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="padding:0;">
@@ -116,7 +194,7 @@
   </div>
 <div>
 <div class="container-fluid">
-  <ul class="nav nav-pills">
+  <ul class="nav nav-pills transformer-tabs">
     {% for key, episodes in tvdb.episodes %}
       {% if config.GUI.display_show_specials == 0 and key == 0 %}
       {% else %}
