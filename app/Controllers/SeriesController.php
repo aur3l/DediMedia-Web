@@ -14,6 +14,23 @@ class SeriesController extends Controller {
     $this->render($response, 'series/home.twig',$data);
   }
 
+  function searchSeries($request,$response, $args = []){
+    $data = $this->container->tvdb->getSeries($_GET['term']);
+    $array = [];
+    foreach ($data as $key => $value ){
+      $vals = get_object_vars($value);
+      $array[] = array(
+        'id' => $vals['id'],
+        'value' => $vals['name']
+      );;
+    }
+    /*echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+    die();*/
+    return  $response->withJson($array);
+  }
+
   function serie($request,$response, $args = []){
     $data = [];
     $serie =  json_decode($this->container->sickrage->show($args['tvdbId']), true);

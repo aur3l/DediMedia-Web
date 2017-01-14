@@ -26,6 +26,8 @@ $app->get('/',\App\Controllers\PagesController::class .':home')->setName('home')
   $app->get('/series/',\App\Controllers\SeriesController::class .':home')->setName('series');
   $app->get('/series[/{tvdbId:[0-9]+}[/]]',\App\Controllers\SeriesController::class .':serie')->setName('serie');
 
+  //
+  $app->get('/series/search[/{params:.*}]',\App\Controllers\SeriesController::class .':searchSeries')->setName('search');
   // Mettre en pause ou reprendre une serie
   $app->get('/series/{tvdbId:[0-9]+}/pause/{etat:[0-1]+}',\App\Controllers\SeriesController::class .':getPaused')->setName('paused');
 
