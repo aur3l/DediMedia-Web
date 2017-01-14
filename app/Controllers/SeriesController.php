@@ -43,7 +43,7 @@ class SeriesController extends Controller {
     $poster = $this->container->tvdb->getBannersFiltered($args['tvdbId'], "poster");
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
     $data['series']['banner'] = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small']);
-    $data['palette'] = ColorThief::getPalette($nameposter);
+    $data['palette'] = ColorThief::getPalette($nameposter, 2);
     foreach ($data['tvdb']['episodes'] as $numS => $season) {
       foreach ($season as $numE => $ep) {
         $ep = get_object_vars($ep);
