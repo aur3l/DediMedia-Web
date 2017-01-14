@@ -22,7 +22,7 @@ class SeriesController extends Controller {
       $array[] = array(
         'id' => $vals['id'],
         'value' => $vals['name'],
-        'type' => "serie"
+        'type' => "series"
       );;
     }
     /*echo "<pre>";
