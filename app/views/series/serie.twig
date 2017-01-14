@@ -37,7 +37,7 @@
 {% block content %}
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
-      <div class="series-inner" style="background: linear-gradient(to bottom right, {% for key, color in palette %}{% if key != 0 %}rgb({{color.0}}, {{color.1}}, {{color.2}}){% if key == 1 %},{% endif%}{% endif%}{% endfor %});">
+      <div class="series-inner" style="background: linear-gradient(to bottom right, {% for key, color in palette %}rgb({{color.0}}, {{color.1}}, {{color.2}}){% if key == 0 %},{% endif%}{% endfor %});">
           <div class="series-content">
             <div class="row">
                 <div class="col-md-8 col-lg-8">

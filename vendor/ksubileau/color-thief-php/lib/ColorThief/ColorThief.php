@@ -125,7 +125,7 @@ class ColorThief
      */
     public static function getPalette($sourceImage, $colorCount = 10, $quality = 10, array $area = null)
     {
-        if ($colorCount < 2 || $colorCount > 256) {
+        if ($colorCount < 1 || $colorCount > 256) {
             throw new \InvalidArgumentException("The number of palette colors must be between 2 and 256 inclusive.");
         }
 
@@ -371,7 +371,7 @@ class ColorThief
                         $secondColor,
                         $thirdColor
                     );
-                    
+
                     $index = static::getColorIndex($red, $green, $blue);
 
                     if (isset($histo[$index])) {
@@ -480,7 +480,7 @@ class ColorThief
     private static function quantize($pixels, $maxColors)
     {
         // short-circuit
-        if (!count($pixels) || $maxColors < 2 || $maxColors > 256) {
+        if (!count($pixels) || $maxColors < 1 || $maxColors > 256) {
             // echo 'wrong number of maxcolors'."\n";
             return false;
         }
