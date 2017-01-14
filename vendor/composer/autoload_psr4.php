@@ -27,5 +27,6 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Concat\\Http\\Middleware\\Test\\' => array($vendorDir . '/rtheunissen/guzzle-log-middleware/tests'),
     'Concat\\Http\\Middleware\\' => array($vendorDir . '/rtheunissen/guzzle-log-middleware/src'),
+    'ColorThief\\' => array($vendorDir . '/ksubileau/color-thief-php/lib/ColorThief'),
     'App\\' => array($baseDir . '/app'),
 );

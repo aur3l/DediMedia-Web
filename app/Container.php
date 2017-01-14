@@ -5,6 +5,7 @@ use Moinax\TvDb\Client;
 use Intervention\Image\ImageManager;
 use Slim\Flash\Messages;
 use Tmdb\ApiToken;
+use ColorThief\ColorThief;
 
 $container = $app->getContainer();
 

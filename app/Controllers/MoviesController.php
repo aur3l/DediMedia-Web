@@ -1,5 +1,6 @@
 <?php
 namespace App\Controllers;
+use ColorThief\ColorThief;
 
 class MoviesController extends Controller {
 
@@ -7,10 +8,8 @@ class MoviesController extends Controller {
 
     $data = $this->container->tmdb->getMoviesApi()->getMovie(330459, array('language' => 'fr'));
 
+
     //http://image.tmdb.org/t/p/w1000//mcwCNjqKUkebvknFkpj0UPdpSj.jpg
-    echo "<pre>";
-    print_r($data);
-echo "</pre>";
     die();
     $data = [];
     $data['movies'] = json_decode($this->container->couchpotato->getMediaList(), true);

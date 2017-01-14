@@ -14,6 +14,7 @@
         "slim/flash": "^0.1.0",
         "kanellov/slim-twig-flash": "^0.1.0",
         "twig/extensions": "^1.4",
-        "php-tmdb/api": "^2.1"
+        "php-tmdb/api": "^2.1",
+        "ksubileau/color-thief-php": "^1.3"
     }
 }

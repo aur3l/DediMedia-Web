@@ -61,6 +61,7 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         array (
             'Concat\\Http\\Middleware\\Test\\' => 28,
             'Concat\\Http\\Middleware\\' => 23,
+            'ColorThief\\' => 11,
         ),
         'A' => 
         array (
@@ -153,6 +154,10 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         'Concat\\Http\\Middleware\\' => 
         array (
             0 => __DIR__ . '/..' . '/rtheunissen/guzzle-log-middleware/src',
+        ),
+        'ColorThief\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ksubileau/color-thief-php/lib/ColorThief',
         ),
         'App\\' => 
         array (
