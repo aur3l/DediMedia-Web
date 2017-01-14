@@ -17,7 +17,7 @@ class SeriesController extends Controller {
   function searchSeries($request,$response, $args = []){
     $data = $this->container->tvdb->getSeries($_GET['term']);
     echo "<pre>";
-    print_r($_GET['term']);
+    print_r($data);
     echo "</pre>";
     die();
     return  $response->withJson($array);
