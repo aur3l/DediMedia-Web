@@ -25,7 +25,7 @@ class SeriesController extends Controller {
       );;
     }
     echo "<pre>";
-    print_r($array);
+    print_r($request->getParam('term'));
     echo "</pre>";
     die();
     return  $response->withJson($array);
