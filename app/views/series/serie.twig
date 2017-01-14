@@ -36,8 +36,8 @@
 {% endblock %}
 {% block content %}
 {{dump(palette)}}
-<pre>{% for color in palette %}</pre>
-{{dump(color)}}
+{% for color in palette %}
+<pre>{{dump(color)}}</pre>
 {% endfor %}
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
