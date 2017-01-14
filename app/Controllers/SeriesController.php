@@ -36,7 +36,7 @@ class SeriesController extends Controller {
   function serie($request,$response, $args = []){
     $data = [];
     $image = $this->container->sickrage->showGetPoster($args['tvdbId']);
-    $data['palette'] = ColorThief::getPalette($image, 2,100);
+    $data['palette'] = ColorThief::getPalette($image, 2);
     $serie =  json_decode($this->container->sickrage->show($args['tvdbId']), true);
     $data['serie']   = $serie['data'];
     $data['listseasons'] = json_decode($this->container->sickrage->showSeasons($args['tvdbId']));
