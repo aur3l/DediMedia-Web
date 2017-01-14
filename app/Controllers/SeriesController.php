@@ -39,11 +39,11 @@ class SeriesController extends Controller {
     $data['palette'] = ColorThief::getPalette($image, 2);
     $serie =  json_decode($this->container->sickrage->show($args['tvdbId']), true);
     $data['serie']   = $serie['data'];
-    $data['listseasons'] = json_decode($this->container->tvdb->getBanners($args['tvdbId']));
+    $data['listseasons'] = json_decode($this->container->sickrage->showSeasons($args['tvdbId']));
     $data['tvdb'] = $this->ReverseArray($this->container->tvdb->getSerieEpisodes($args['tvdbId'], "fr"));
     $data['config'] = $this->container->configdefault;
 
-    $data['series']['banner'] = $this->multiRezise($this->container->sickrage->showGetPoster($args['tvdbId']), $args['tvdbId'], "tmp/covers",['small']);
+    $data['series']['banner'] = $this->multiRezise($this->container->tvdb->getBanners($args['tvdbId']), $args['tvdbId'], "tmp/covers",['small']);
     foreach ($data['tvdb']['episodes'] as $numS => $season) {
       foreach ($season as $numE => $ep) {
         $ep = get_object_vars($ep);
