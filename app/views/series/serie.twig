@@ -36,9 +36,12 @@
 {% endblock %}
 {% block content %}
 {{dump(palette)}}
+{% for color in palette %}
+{{dump(color)}}
+{% endfor %}
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
-      <div class="series-inner" style="background: linear-gradient(to bottom right, #1e2f3c, #274a5d);">
+      <div class="series-inner" style="background: linear-gradient(to bottom right, );">
           <div class="series-content">
             <div class="row">
                 <div class="col-md-8 col-lg-8">
