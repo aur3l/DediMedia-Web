@@ -21,7 +21,8 @@ class SeriesController extends Controller {
       $vals = get_object_vars($value);
       $array[] = array(
         'id' => $vals['id'],
-        'value' => $vals['name']
+        'value' => $vals['name'],
+        'type' => "serie"
       );;
     }
     /*echo "<pre>";
