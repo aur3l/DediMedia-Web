@@ -15,7 +15,7 @@ class SeriesController extends Controller {
   }
 
   function searchSeries($request,$response, $args = []){
-    $data = $this->container->tvdb->getSeries("american");
+    $data = $this->container->tvdb->getSeries($request->getParam('term'));
     $array = [];
     foreach ($data as $key => $value ){
       $vals = get_object_vars($value);
@@ -24,10 +24,10 @@ class SeriesController extends Controller {
         'value' => $vals['name']
       );;
     }
-    echo "<pre>";
-    print_r($request->getParam('term'));
+    /*echo "<pre>";
+    print_r($array);
     echo "</pre>";
-    die();
+    die();*/
     return  $response->withJson($array);
   }
 
