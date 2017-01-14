@@ -35,12 +35,9 @@
   .lead, .series-genres {font-size:15px; margin-top:0;}
 {% endblock %}
 {% block content %}
-{% for color in palette %}
-rgb({{color.0}}, {{color.1}}, {{color.2}})
-{% endfor %}
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
-      <div class="series-inner" style="background: linear-gradient(to bottom right, );">
+      <div class="series-inner" style="background: linear-gradient(to bottom right, {% for color in palette %}rgb({{color.0}}, {{color.1}}, {{color.2}}),{% endfor %});">
           <div class="series-content">
             <div class="row">
                 <div class="col-md-8 col-lg-8">
