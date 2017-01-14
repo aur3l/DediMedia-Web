@@ -24,10 +24,6 @@ class SeriesController extends Controller {
         'value' => $vals['name']
       );;
     }
-    /*echo "<pre>";
-    print_r($array);
-    echo "</pre>";
-    die();*/
     return  $response->withJson($array);
   }
 
