@@ -44,7 +44,7 @@
                 <div class="col-md-8 col-lg-8">
                     <h1 class="series-title">{{tvdb.serie.name}}</h1>
                     <h4 class="series-genres">
-                      {{ series.banner.small}}
+                      <img src="{{ series.banner.small}}" >
                       {% for key, genre in tvdb.serie.genres %}
                         {{genre}}{% if not loop.last %},{% endif %}
                       {% endfor %}
