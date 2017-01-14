@@ -43,7 +43,7 @@ class SeriesController extends Controller {
     $data['tvdb'] = $this->ReverseArray($this->container->tvdb->getSerieEpisodes($args['tvdbId'], "fr"));
     $data['config'] = $this->container->configdefault;
     $poster = $this->container->tvdb->getBannersFiltered($args['tvdbId'], "poster");
-    $data['series']['banner'] = $this->multiRezise($poster, $args['tvdbId'], "tmp/covers",['small']);
+    $data['series']['banner'] = $this->multiRezise("http://thetvdb.com/banners/"$poster[0]->path, $args['tvdbId'], "tmp/covers",['small']);
     foreach ($data['tvdb']['episodes'] as $numS => $season) {
       foreach ($season as $numE => $ep) {
         $ep = get_object_vars($ep);
