@@ -42,6 +42,8 @@ class SeriesController extends Controller {
     $data['listseasons'] = json_decode($this->container->sickrage->showSeasons($args['tvdbId']));
     $data['tvdb'] = $this->ReverseArray($this->container->tvdb->getSerieEpisodes($args['tvdbId'], "fr"));
     $data['config'] = $this->container->configdefault;
+
+    $data['series']['banner'] = $this->multiRezise($this->container->sickrage->showGetPoster($args['tvdbId']), $args['tvdbId'], "tmp/covers",['small']);
     foreach ($data['tvdb']['episodes'] as $numS => $season) {
       foreach ($season as $numE => $ep) {
         $ep = get_object_vars($ep);
