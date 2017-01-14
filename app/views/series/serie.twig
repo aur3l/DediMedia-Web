@@ -35,7 +35,6 @@
   .lead, .series-genres {font-size:15px; margin-top:0;}
 {% endblock %}
 {% block content %}
-{{dump(palette)}}
 {% for color in palette %}
 rgb({{color.0}}, {{color.1}}, {{color.2}})
 {% endfor %}
