@@ -37,7 +37,7 @@
 {% block content %}
 {{dump(palette)}}
 {% for color in palette %}
-<pre>{{dump(color)}}</pre>
+rgb({{color.0}}, {{color.1}}, {{color.2}})
 {% endfor %}
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
