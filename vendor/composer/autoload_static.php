@@ -14,14 +14,21 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Tmdb\\' => 5,
+        ),
         'S' => 
         array (
+            'Symfony\\Component\\OptionsResolver\\' => 34,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
             'Slim\\Views\\' => 11,
             'Slim\\Flash\\' => 11,
             'Slim\\' => 5,
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
         'K' => 
@@ -29,6 +36,7 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
             'Kryptonit3\\SickRage\\' => 20,
             'Kryptonit3\\CouchPotato\\' => 23,
             'Knlv\\Slim\\Views\\' => 16,
+            'Kevinrob\\GuzzleCache\\' => 21,
         ),
         'I' => 
         array (
@@ -45,6 +53,15 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         array (
             'FastRoute\\' => 10,
         ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Cache\\' => 22,
+        ),
+        'C' => 
+        array (
+            'Concat\\Http\\Middleware\\Test\\' => 28,
+            'Concat\\Http\\Middleware\\' => 23,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -52,6 +69,18 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
     );
 
     public static $prefixDirsPsr4 = array (
+        'Tmdb\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-tmdb/api/lib/Tmdb',
+        ),
+        'Symfony\\Component\\OptionsResolver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/options-resolver',
+        ),
+        'Symfony\\Component\\EventDispatcher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
         'Slim\\Views\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/twig-view/src',
@@ -63,6 +92,10 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -79,6 +112,11 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         'Knlv\\Slim\\Views\\' => 
         array (
             0 => __DIR__ . '/..' . '/kanellov/slim-twig-flash/src',
+        ),
+        'Kevinrob\\GuzzleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kevinrob/guzzle-cache-middleware/src',
+            1 => __DIR__ . '/..' . '/kevinrob/guzzle-cache-middleware/tests',
         ),
         'Intervention\\Image\\' => 
         array (
@@ -103,6 +141,18 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Doctrine\\Common\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Concat\\Http\\Middleware\\Test\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rtheunissen/guzzle-log-middleware/tests',
+        ),
+        'Concat\\Http\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rtheunissen/guzzle-log-middleware/src',
         ),
         'App\\' => 
         array (

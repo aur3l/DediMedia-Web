@@ -4,6 +4,7 @@ use Kryptonit3\CouchPotato\CouchPotato;
 use Moinax\TvDb\Client;
 use Intervention\Image\ImageManager;
 use Slim\Flash\Messages;
+use Tmdb\ApiToken;
 
 $container = $app->getContainer();
 
@@ -43,6 +44,12 @@ $container['couchpotato'] = function ($container){
 $container['tvdb'] = function ($container){
   $tvdb = new Client('http://thetvdb.com','C3ECC3508C662A92');
   return $tvdb;
+};
+
+$container['tmdb'] = function ($container){
+  $token  = new \Tmdb\ApiToken('ffc0856c7d4f5698c42353259ab108be');
+  $tmdb   = new \Tmdb\Client($token);
+  return $tmdb;
 };
 
 $container['resize'] = function ($container){

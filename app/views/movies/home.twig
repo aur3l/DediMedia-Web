@@ -1,12 +1,21 @@
 {% set title = "Films" %}
 {% extends "layout.twig" %}
+{% block style %}
+  .thumbnail{display:block;padding:4px;margin-bottom:20px;line-height:1.42857143;background-color:#fff;border:1px solid #ddd;border-radius:4px;-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out}
+  .thumbnail>img,.thumbnail a>img{margin-right:auto;margin-left:auto}
+  a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active{border-color:#428bca}
+  .thumbnail .caption{padding:9px;color:#333}
+{% endblock %}
 {% block content %}
-
-  <h1 class="page-header">Films</h1>
-  <pre>{{ dump(movies) }}</pre>
-
-  {% for movie in movies %}
-    {{ movie.info.original_title}}<br>
-{% endfor %}
+<h1 class="page-header">Liste de mes Films</h1>
+  <div class="row" style="text-align: center; display: table-row;">
+    {% for movie in movies %}
+      <div class="col-md-2 col-sm-4 col-xs-4 posters">
+        <a href=""  class="thumbnail" data-toggle="tooltip" data-placement="top" title="Voir la serie ">
+          <img src="{{movie.info.images.poster_original.0}}" alt="Vignette de {{ movie.info.original_title}}}" id="">
+        </a>
+      </div>
+    {% endfor %}
+</div>
 
 {% endblock %}
