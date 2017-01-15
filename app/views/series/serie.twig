@@ -40,10 +40,10 @@
       <div class="series-inner" style="background: linear-gradient(to bottom right, {% for key, color in palette %}{% if key != 2 %}rgb({{color.0}}, {{color.1}}, {{color.2}}){% if key == 0 %},{% endif%}{% endif%}{% endfor %});">
           <div class="series-content">
             <div class="row">
-                <div class="col-md-4 col-lg-4" style="text-align:left;">
+                <div class="col-md-2 col-lg-2" style="text-align:left;">
                     <img src="{{ series.banner.small}}" >
                 </div>
-                <div class="col-md-6 col-lg-6">
+                <div class="col-md-8 col-lg-8">
                     <h1 class="series-title">{{tvdb.serie.name}}</h1>
                     <h4 class="series-genres">
                       {% for key, genre in tvdb.serie.genres %}
