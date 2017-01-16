@@ -47,11 +47,6 @@ class SeriesController extends Controller {
     foreach ($data['seasons'] as $key => $value) {
       // On récupére les episodes des saisons avec l'id et le numéro de la saison.
       $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number']);
-
-      // On sauvegarde la pochette de la serie en question.
-      $nameposter = "http://image.tmdb.org/t/p/w1000".$value['poster_path'];
-      $poster_path = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small'],'_S'.$value['season_number']);
-      $data['seasons'][$key]['poster_path'] = $poster_path;
     }
 
     $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
