@@ -371,7 +371,7 @@ class ColorThief
                         $secondColor,
                         $thirdColor
                     );
-
+                    
                     $index = static::getColorIndex($red, $green, $blue);
 
                     if (isset($histo[$index])) {

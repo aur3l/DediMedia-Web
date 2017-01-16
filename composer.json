@@ -9,7 +9,6 @@
         "slim/twig-view": "^2.1",
         "kryptonit3/sickrage": "^1.0",
         "kryptonit3/couchpotato": "^1.0",
-        "Moinax/TvDb": "^1.0",
         "intervention/image": "^2.3",
         "slim/flash": "^0.1.0",
         "kanellov/slim-twig-flash": "^0.1.0",

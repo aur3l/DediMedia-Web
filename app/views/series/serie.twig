@@ -35,6 +35,7 @@
   .lead, .series-genres {font-size:15px; margin-top:0;}
 {% endblock %}
 {% block content %}
+<pre>{{dump(tvdb)}}</pre>
 <div class="container-fluid" style="padding:0;">
   <div class="series-container">
       <div class="series-inner" style="background: linear-gradient(to bottom right, {% for key, color in palette %}{% if key != 2 %}rgb({{color.0}}, {{color.1}}, {{color.2}}){% if key == 0 %},{% endif%}{% endif%}{% endfor %});">

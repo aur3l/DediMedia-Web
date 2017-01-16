@@ -19,14 +19,14 @@ class Controller {
     }
 
     //Rezise multi tailles
-    function multiRezise($src, $name, $dest="tmp", $size=[]) {
+    function multiRezise($src, $name, $dest="tmp", $size=[], $style =null) {
       $sizes = $this->container->sizes;
       if($size == null)
       {
         foreach ($sizes as $key => $value) {
           $dir = dirname(dirname(__DIR__));
-          $url = $dir.'/public/'.$dest.'/'.$name.'_'.$key.'.jpg';
-          $urlNo = '/'.$dest.'/'.$name.'_'.$key.'.jpg';
+          $url = $dir.'/public/'.$dest.'/'.$name.'_'.$key.$style.'.jpg';
+          $urlNo = '/'.$dest.'/'.$name.'_'.$key.$style.'.jpg';
           if(file_exists($url)){
             $new[$key] = $urlNo;
           }
@@ -41,8 +41,8 @@ class Controller {
       else{
         foreach ($size as $key => $value) {
           $dir = dirname(dirname(__DIR__));
-          $url = $dir.'/public/'.$dest.'/'.$name.'_'.$value.'.jpg';
-          $urlNo = '/'.$dest.'/'.$name.'_'.$value.'.jpg';
+          $url = $dir.'/public/'.$dest.'/'.$name.'_'.$value.$style.'.jpg';
+          $urlNo = '/'.$dest.'/'.$name.'_'.$value.$style.'.jpg';
           if(file_exists($url)){
             $new[$value] = $urlNo;
 
@@ -65,6 +65,17 @@ class Controller {
           $arr[$key] = $this->ReverseArray($val);
         }
       return array_reverse($arr, TRUE);
+    }
+
+    // Afficher un tableau avec pre.
+    function getArray($array){
+      echo "<pre>";
+      print_r($array);
+      echo "</pre>";
+      die();
+    }
+    function rgb2hex($rgb) {
+      return '#' . sprintf('%02x', $rgb['0']) . sprintf('%02x', $rgb['1']) . sprintf('%02x', $rgb['2']);
     }
 
 }

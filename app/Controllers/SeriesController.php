@@ -34,24 +34,35 @@ class SeriesController extends Controller {
   }
 
   function serie($request,$response, $args = []){
-    $data = [];
-    $serie =  json_decode($this->container->sickrage->show($args['tvdbId']), true);
-    $data['serie']   = $serie['data'];
-    $data['listseasons'] = json_decode($this->container->sickrage->showSeasons($args['tvdbId']));
-    $data['tvdb'] = $this->ReverseArray($this->container->tvdb->getSerieEpisodes($args['tvdbId'], "fr"));
-    $data['config'] = $this->container->configdefault;
-    $poster = $this->container->tvdb->getBannersFiltered($args['tvdbId'], "poster");
-    $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
-    $data['series']['banner'] = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small']);
-    $data['palette'] = ColorThief::getPalette($nameposter, 2);
-    foreach ($data['tvdb']['episodes'] as $numS => $season) {
-      foreach ($season as $numE => $ep) {
-        $ep = get_object_vars($ep);
-        //print_r($this->container->sickrage->episode($args['tvdbId'], $ep['season'], $ep['number'])); die();
-        $data['tvdb']['episodes'][$numS][$numE]->status = $this->container->sickrage->episode($args['tvdbId'], $ep['season'], $ep['number']);
-      ;
-      }
+    // On récupére l'id de TmDb grace a l'id de TvDb par parametre GET et on le renvoit.
+    $id = $this->container->tmdb->getFindApi()->findBy($args['tvdbId'], [
+      'external_source' => 'tvdb_id'
+    ]);
+    $id = $id['tv_results']['0']['id'];
+
+    // On récupére les infos de la série.
+    $data = $this->container->tmdb->getTvApi()->getTvshow($id, array('language' => 'fr'));
+
+    // On coupé le tableau afin d'y integrer les episodes et au sauvegarde les pochettes des saisons en format small.
+    foreach ($data['seasons'] as $key => $value) {
+      // On récupére les episodes des saisons avec l'id et le numéro de la saison.
+      $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number']);
+
+      // On sauvegarde la pochette de la serie en question.
+      $nameposter = "http://image.tmdb.org/t/p/w1000".$value['poster_path'];
+      $poster_path = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small'],'_S'.$value['season_number']);
+      $data['seasons'][$key]['poster_path'] = $poster_path;
     }
+
+    $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
+    $data['poster_path'] = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small']);
+    $ColorThief = ColorThief::getPalette($nameposter, 2,10);
+
+    foreach ($ColorThief as $key => $rgb) {
+      $data['palette'][$key] = $this->rgb2hex($rgb);
+    }
+
+    $this->getArray($data);
 
     $this->render($response, 'series/serie.twig',$data);
   }

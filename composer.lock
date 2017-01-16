@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e8c77f0f5e0d8d2ceab35b02bf7516b5",
-    "content-hash": "896fd9f3bd0487dc39d6fba9b749a2c7",
+    "hash": "3ea2d5c13d0ae614778ba9d1db1ea2ac",
+    "content-hash": "b2046d2338ccddd6bbbb1d0e097a19ac",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -594,46 +594,6 @@
                 "thief"
             ],
             "time": "2016-12-18 03:12:25"
-        },
-        {
-            "name": "moinax/tvdb",
-            "version": "v1.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Moinax/TvDb.git",
-                "reference": "26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Moinax/TvDb/zipball/26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085",
-                "reference": "26f33df9e0ddf9b0b6ba9deeb43f1fa83b483085",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Moinax\\TvDb": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Moinax",
-                    "email": "moinax@gmail.com"
-                }
-            ],
-            "description": "PHPTVDB is a PHP library for accessing TV show information such as episodes, actors, showtimes and descriptions.",
-            "homepage": "http://moinax.github.io/TvDb/",
-            "keywords": [
-                "api"
-            ],
-            "time": "2016-10-25 08:14:27"
         },
         {
             "name": "nikic/fast-route",
