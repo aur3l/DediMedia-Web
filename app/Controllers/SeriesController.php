@@ -46,7 +46,7 @@ class SeriesController extends Controller {
     // On coupé le tableau afin d'y integrer les episodes et au sauvegarde les pochettes des saisons en format small.
     foreach ($data['seasons'] as $key => $value) {
       // On récupére les episodes des saisons avec l'id et le numéro de la saison.
-      $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number']);
+      //$data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number']);
     }
 
     $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
