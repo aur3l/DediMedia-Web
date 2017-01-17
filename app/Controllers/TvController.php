@@ -51,7 +51,7 @@ class TvController extends Controller {
       }
       $data['poster_path'] = $this->multiRezise($this->container->sickrage->showGetPoster($data['external_ids']['tvdb_id']), $data['external_ids']['tvdb_id'], "tmp/covers",['small']);
 
-      $ColorThief = ColorThief::getPalette("http://0.0.0.0:8080".$data['poster_path']['small'], 2,10, array('w' => 300, 'h' => 450));
+      $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['small'], 2,10, array('w' => 300, 'h' => 450));
 
       foreach ($ColorThief as $key => $rgb) {
         $data['palette'][$key] = $this->rgb2hex($rgb);
