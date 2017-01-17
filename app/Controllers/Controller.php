@@ -14,8 +14,8 @@ class Controller {
       return $this->container->view->render($response,$file,$params);
     }
 
-    function redirect($response, $name, $statut=302, $args=[]) {
-      return $response->withStatus($statut)->withHeader('Location', $this->container->router->pathFor($name,$args));
+    function redirect($response, $name, $args=[]) {
+      return $response->withStatus(302)->withHeader('Location', $this->container->router->pathFor($name,$args));
     }
 
     //Rezise multi tailles

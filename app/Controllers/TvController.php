@@ -24,33 +24,49 @@ class TvController extends Controller {
         'external_source' => 'tvdb_id'
       ]);
 
-      if($TvDbid['tv_episode_results'] != null) { $id = $args['tvdbId']; } else { $id = $TvDbid['tv_results']['0']['id']; }
+      if($TvDbid['tv_results'] == null) {
+        // Si l'id comme argument est celui-ci de TmDb
+        $id = $args['tvdbId'];
+      } else {
+        $id = $TvDbid['tv_results']['0']['id'];
+      }
 
       // On récupére les infos de la série.
       $data = $this->container->tmdb->getTvApi()->getTvshow($id, array('language' => 'fr'));
 
+      if($TvDbid['tv_results'] == null) {
+        $data['external_ids'] = $this->container->tmdb->getTvApi()->getExternalIds($id);
+      } else {
+        $data['external_ids']['tvdb_id'] = $args['tvdbId'];
+      }
+
+      // On récupéré les infos de la serie par l'api SickRage
+      $config = json_decode($this->container->sickrage->show($data['external_ids']['tvdb_id']), true);
+      $data['config'] = $config['data'];
+
       // On coupé le tableau afin d'y integrer les episodes et au sauvegarde les pochettes des saisons en format small.
       foreach ($data['seasons'] as $key => $value) {
         // On récupére les episodes des saisons avec l'id et le numéro de la saison.
-        //$data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number']);
+        $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number'], array('language' => 'fr','orderBy' => 'desc'));
       }
 
-      $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
-      $data['poster_path'] = $this->multiRezise($nameposter, $args['tvdbId'], "tmp/covers",['small']);
-      $ColorThief = ColorThief::getPalette($nameposter, 2,10);
+      if($data['poster_path'] != null){
+        $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
+        $data['poster_path'] = $this->multiRezise($nameposter, $data['external_ids']['tvdb_id'], "tmp/covers",['small']);
+        $ColorThief = ColorThief::getPalette($nameposter, 2,10);
 
-      foreach ($ColorThief as $key => $rgb) {
-        $data['palette'][$key] = $this->rgb2hex($rgb);
+        foreach ($ColorThief as $key => $rgb) {
+          $data['palette'][$key] = $this->rgb2hex($rgb);
+        }
       }
-
-      $this->getArray($data);
-      $this->render($response, 'tv/serie.twig',$data);
+      //$this->getArray($data);
+      $this->render($response, 'tv/tv.twig',$data);
 
     } catch (TmdbApiException $e) {
         if (TmdbApiException::STATUS_RESOURCE_NOT_FOUND == $e->getCode()) {
             $message = 'Cette série n\'existe pas.';
             $this->container->flash->addMessage('Flash', $message, "danger");
-            return $this->redirect($response,"home", 302);
+            return $this->redirect($response,"home");
         }
     }
   }
@@ -65,21 +81,21 @@ class TvController extends Controller {
     if($this->container->sickrage->showPause($args['tvdbId'],$args['etat'])){
       $this->container->flash->addMessage('Flash', ($args['etat'] == 0) ? "La recherche des nouveaux épisodes reprend." : "La recherhe des nouveaux épisodes a été stopée.","warning");
     }
-    return $this->redirect($response, 'serie', $args);
+    return $this->redirect($response, 'tv', $args);
   }
 
   function getAdd($request,$response, $args){
     if($this->container->sickrage->showAddNew($args['tvdbId'])){
       $this->container->flash->addMessage('Flash', "La série est en cours d'ajout.");
     }
-    return $this->redirect($response, 'serie', $args);
+    return $this->redirect($response, 'tv', $args);
   }
 
   function getDelete($request,$response, $args){
     if($this->container->sickrage->showDelete($args['tvdbId'])){
       $this->container->flash->addMessage('Flash', "La série est en cours de suppression.");
     }
-    return $this->redirect($response, 'serie', $args);
+    return $this->redirect($response, 'tv', $args);
   }
 
 }

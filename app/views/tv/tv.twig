@@ -1,22 +1,6 @@
-{% set title %}Series - {{tvdb.serie.name}}{% endset %}
+{% set title %}Series - {{name}}{% endset %}
 {% extends "layout.twig" %}
 {% block style %}
-  .episode-detailed{padding-top:20px}
-  .episode-detailed .episode{margin-bottom:10px}
-  .episode-detailed .episode-inner{position:relative;background:transparent no-repeat center center;background-size:cover;padding:5px}
-  .episode-detailed .episode-content{background-color:rgba(0,0,0,0.5);padding:15px;color:#dedede}
-  .episode-detailed .episode-content h3,.episode-detailed .episode-content h4{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-  .episode-detailed .episode-content h3{margin-top:0}
-  .episode-detailed .episode-content h4{padding:5px 0}
-  .episode-detailed .episode-status{position:absolute;top:5px;right:40px}
-  .episode-detailed .episode-actions{position:absolute;bottom:-20px;padding-left:40px;left:0;right:-40px;z-index:10}
-  .episode-detailed,.episode-list{padding-top:20px}
-  .episode-detailed .episode-overview,.episode-list .episode-overview{height:60px;overflow:hidden}
-  .episode-detailed .episode-content,.episode-list .episode-content{overflow:hidden}
-  .episode-list .episode{position:relative}
-  .episode-list .episode-status{position:absolute;top:8px;left:30px}
-  .episode-list .episode-overview{margin-bottom:20px;height:120px}
-
   .series{padding-top:50px}
   .series-container{position:relative;margin-bottom:5px}
   .series-inner{position:relative;background:no-repeat top center; background-size:cover; padding:15px}
@@ -33,40 +17,70 @@
   .search-result .series-overview{height:120px}
   .firstAired{text-transform: capitalize;}
   .lead, .series-genres {font-size:15px; margin-top:0;}
+
+  .episode-detailed{padding-top:20px}
+  .episode-detailed .episode{margin-bottom:10px}
+  .episode-detailed .episode-inner{position:relative;background:transparent no-repeat center center;background-size:cover;padding:5px}
+  .episode-detailed .episode-content{background-color:rgba(0,0,0,0.5);padding:15px;color:#dedede}
+  .episode-detailed .episode-content h3,.episode-detailed .episode-content h4{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .episode-detailed .episode-content h3{margin-top:0}
+  .episode-detailed .episode-content h4{padding:5px 0}
+  .episode-detailed .episode-status{position:absolute;top:5px;right:40px}
+  .episode-detailed .episode-actions{position:absolute;bottom:-20px;padding-left:40px;left:0;right:-40px;z-index:10}
+  .episode-detailed,.episode-list{padding-top:20px}
+  .episode-detailed .episode-overview,.episode-list .episode-overview{height:60px;overflow:hidden}
+  .episode-detailed .episode-content,.episode-list .episode-content{overflow:hidden}
+  .episode-list .episode{position:relative}
+  .episode-list .episode-status{position:absolute;top:8px;left:30px}
+  .episode-list .episode-overview{margin-bottom:20px;height:120px}
+  .label-default{ background-color:{{palette.2}};}
+  .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ background-color:{{palette.2}};}
 {% endblock %}
 {% block content %}
-<pre>{{dump(tvdb)}}</pre>
-<div class="container-fluid" style="padding:0;">
+<div class="container-fluid" style="padding:0; margin:0px;">
   <div class="series-container">
-      <div class="series-inner" style="background: linear-gradient(to bottom right, {% for key, color in palette %}{% if key != 2 %}rgb({{color.0}}, {{color.1}}, {{color.2}}){% if key == 0 %},{% endif%}{% endif%}{% endfor %});">
+      <div class="row">
+        {% for key, color in palette %}
+        <div class="col-lg-1" style="width:150px; height:150px; background: {{color}}; line-height:150px; text-align:center; color:white;">
+          {{color}}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="series-inner" style="background: linear-gradient(to bottom right, {{palette.0}},{{palette.2}});">
           <div class="series-content">
             <div class="row">
                 <div class="col-md-2 col-lg-2" style="text-align:left;">
-                    <img src="{{ series.banner.small}}" class="img-thumbnail">
+                    <img src="{{ poster_path.small}}" class="img-thumbnail">
                 </div>
                 <div class="col-md-8 col-lg-8">
-                    <h1 class="series-title">{{tvdb.serie.name}}</h1>
+                    <h1 class="series-title">{{name}}</h1>
                     <h4 class="series-genres">
-                      {% for key, genre in tvdb.serie.genres %}
-                        {{genre}}{% if not loop.last %},{% endif %}
+                      {% for key, genre in genres %}
+                        {{genre.name}}{% if not loop.last %},{% endif %}
                       {% endfor %}
                     </h4>
                     <div class="series-detail">
                       <h2>Synopsis</h2>
-                      <p class="lead">{{tvdb.serie.overview}}</p>
+                      <p class="lead">{{overview}}</p>
                     </div>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2" style="text-align:right;">
                     <h2>Production</h2>
                     <dl>
                         <dt>Chaîne :</dt>
-                        <dd><span class="label label-default"><em>{{tvdb.serie.network}}</em></span></dd>
+                        <dd><span class="label label-default">
+                          {% for key, network in networks %}
+                              {% if loop.last %}
+                                <em>{{network.name}}</em>
+                              {% endif %}
+                          {% endfor %}
+                        </span></dd>
                         <dt>Première diffusion :</dt>
-                        <dd><small class="firstAired">{{tvdb.serie.firstAired.date|date('l d F Y')}}</small></dd>
-                        <dt>Diffusée le :</dt>
-                        <dd><small>{{tvdb.serie.airsDayOfWeek}} à {{tvdb.serie.airsTime|date("H\\hi")}}</small></dd>
+                        <dd><small class="firstAired">{{first_air_date|date('l d F Y')}}</small></dd>
+                        <dt>Derniere diffussion :</dt>
+                        <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
                         <dt>Notée :</dt>
-                        <dd><span class="label label-info">{{tvdb.serie.rating}}</span></dd>
+                        <dd><span class="label label-default">{{vote_average}}</span></dd>
                     </dl>
                 </div>
             </div>
@@ -74,26 +88,26 @@
                 <div class="col-md-12 col-lg-12">
                   <div class="text-right">
                     <h2>Actions</h2>
-                    {% if serie != null %}
+                    {% if config != null %}
 
                       {% if config.GUI.display_show_specials == 0 %}
-                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': tvdb.serie.id,'etat': 0}) }}">
+                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
                           <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
                           Afficher les extras
                         </a>
                       {% else %}
-                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': tvdb.serie.id,'etat': 0}) }}">
+                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
                           <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
                           Cacher les extras
                         </a>
                       {% endif %}
-                      {% if serie.paused == 1%}
-                        <a class="btn btn-success" href="{{ path_for('paused', {'tvdbId': tvdb.serie.id,'etat': 0}) }}">
+                      {% if config.paused == 1%}
+                        <a class="btn btn-success" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
                           <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
                           Reprendre
                         </a>
                       {% else %}
-                        <a class="btn btn-warning" href="{{ path_for('paused', {'tvdbId': tvdb.serie.id,'etat': 1}) }}">
+                        <a class="btn btn-warning" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 1}) }}">
                           <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
                           Pause
                         </a>
@@ -102,12 +116,12 @@
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         Editer
                       </a>
-                      <a class="btn btn-danger" href="{{ path_for('delete', {'tvdbId': tvdb.serie.id}) }}">
+                      <a class="btn btn-danger" href="{{ path_for('delete', {'tvdbId': external_ids.tvdb_id}) }}">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         Retirer
                       </a>
                     {% else %}
-                      <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': tvdb.serie.id}) }}">
+                      <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': external_ids.tvdb_id}) }}">
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         Ajouter
                       </a>
@@ -121,7 +135,7 @@
 <div>
 <div class="container-fluid">
   <ul class="nav nav-pills">
-    {% for key, episodes in tvdb.episodes %}
+    {% for key, season in seasons %}
       {% if config.GUI.display_show_specials == 0 and key == 0 %}
       {% else %}
         <li {% if key == 1 %}class="active"{% endif %}>
@@ -134,19 +148,23 @@
   </ul>
   <div class="episode-detailed row">
     <div class="tab-content">
-      {% for key, episode in tvdb.episodes %}
+      {% for key, season in seasons %}
         {% if config.GUI.display_show_specials == 0 and key == 0 %}
         {% else %}
           <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
-          {% for key, ep in episode %}
+          {% for key, ep in season.episodes %}
               <div class="episode col-xs-12 col-sm-6 col-md-4">
-                <div class="episode-inner" style="background-image:url('{% if ep.thumbnail != null %}http://thetvdb.com/banners/{{ep.thumbnail}}{% else %}http://thetvdb.com/banners/{{tvdb.serie.fanArt}}{% endif %}');">
+                <div class="episode-inner" style="background-image:url('{% if ep.still_path != null %}http://image.tmdb.org/t/p/w500{{ep.still_path}}{% else %}http://image.tmdb.org/t/p/w500{{backdrop_path}}{% endif %}');">
                   <div class="episode-content">
-                    <h3>{{tvdb.serie.name}}</h3>
-                    <h4><span class="label label-info">S{{ep.season}}E{{ep.number}}</span> {{ep.name}}</h4>
-                    <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
+                    <h3>{{name}}</h3>
+                    <h4><span class="label label-default">S{{ep.season_number}}E{{ep.episode_number}}</span> {{ep.name}}</h4>
+                    <h6>{{ep.air_date|date("l d F Y")}}</h6>
                     <p class="episode-overview">
+                      {% if ep.overview != null %}
                         {{ep.overview}}
+                      {% else %}
+                          Nous ne disposons pas d'un résumé traduit en français.
+                      {% endif %}
                     </p>
                   </div>
                 </div>
