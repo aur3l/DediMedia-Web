@@ -47,19 +47,15 @@ class TvController extends Controller {
       // On coupé le tableau afin d'y integrer les episodes et au sauvegarde les pochettes des saisons en format small.
       foreach ($data['seasons'] as $key => $value) {
         // On récupére les episodes des saisons avec l'id et le numéro de la saison.
-        $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number'], array('language' => 'fr','orderBy' => 'desc'));
+        $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number'], array('language' => 'fr'));
       }
+      $data['poster_path'] = $this->multiRezise($this->container->sickrage->showGetPoster($data['external_ids']['tvdb_id']), $data['external_ids']['tvdb_id'], "tmp/covers",['small']);
 
-      if($data['poster_path'] != null){
-        $nameposter = "http://image.tmdb.org/t/p/w1000".$data['poster_path'];
-        $data['poster_path'] = $this->multiRezise($nameposter, $data['external_ids']['tvdb_id'], "tmp/covers",['small']);
-        $ColorThief = ColorThief::getPalette($nameposter, 2,10);
+      $ColorThief = ColorThief::getPalette("http://0.0.0.0:8080".$data['poster_path']['small'], 2,10, array('w' => 300, 'h' => 450));
 
-        foreach ($ColorThief as $key => $rgb) {
-          $data['palette'][$key] = $this->rgb2hex($rgb);
-        }
+      foreach ($ColorThief as $key => $rgb) {
+        $data['palette'][$key] = $this->rgb2hex($rgb);
       }
-      //$this->getArray($data);
       $this->render($response, 'tv/tv.twig',$data);
 
     } catch (TmdbApiException $e) {
