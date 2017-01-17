@@ -14,31 +14,33 @@ $app = new \Slim\App([
 ]);
 require ('../app/Container.php');
 
-$container = $app->getContainer();
-
 // Middlewares
 $app->add(new \App\Middlewares\FlashMiddleware($container->view->getEnvironment()));
 
 // Accueil
 $app->get('/',\App\Controllers\PagesController::class .':home')->setName('home');
 
-//Series (SickRage)
-  $app->get('/series/',\App\Controllers\SeriesController::class .':home')->setName('series');
-  $app->get('/series[/{tvdbId:[0-9]+}[/]]',\App\Controllers\SeriesController::class .':serie')->setName('serie');
+// Accueil
+$app->get('/404/',\App\Controllers\PagesController::class .':home')->setName('404');
 
-  //
-  $app->get('/search[/{params:.*}]',\App\Controllers\SearchsController::class .':home')->setName('search');
+// Rechercher une serie ou un film
+$app->get('/search[/{id:.*}]',\App\Controllers\SearchsController::class .':home')->setName('search');
+
+//Series (SickRage)
+  $app->get('/tv/',\App\Controllers\TvController::class .':home')->setName('tvs');
+  $app->get('/tv[/{tvdbId:[0-9]+}[/]]',\App\Controllers\TvController::class .':tv')->setName('tv');
+
   // Mettre en pause ou reprendre une serie
-  $app->get('/series/{tvdbId:[0-9]+}/pause/{etat:[0-1]+}',\App\Controllers\SeriesController::class .':getPaused')->setName('paused');
+  $app->get('/tv/{tvdbId:[0-9]+}/pause/{etat:[0-1]+}',\App\Controllers\TvController::class .':getPaused')->setName('paused');
 
   // Ajouter une serie
-  $app->get('/series/{tvdbId:[0-9]+}/add',\App\Controllers\SeriesController::class .':getAdd')->setName('add');
+  $app->get('/tv/{tvdbId:[0-9]+}/add',\App\Controllers\TvController::class .':getAdd')->setName('add');
 
   // Supprimer une serie
-  $app->get('/series/{tvdbId:[0-9]+}/delete',\App\Controllers\SeriesController::class .':getDelete')->setName('delete');
+  $app->get('/tv/{tvdbId:[0-9]+}/delete',\App\Controllers\TvController::class .':getDelete')->setName('delete');
 
-  $app->get('/series/{tvdbId}/{season}',\App\Controllers\SeriesController::class .':season')->setName('season');
-  $app->get('/series/{tvdbId}/{season}/{episode}',\App\Controllers\SeriesController::class .':episode')->setName('episode');
+  $app->get('/tv/{tvdbId}/{season}',\App\Controllers\TvController::class .':season')->setName('season');
+  $app->get('/tv/{tvdbId}/{season}/{episode}',\App\Controllers\TvController::class .':episode')->setName('episode');
 // Films (CouchPotato)
-$app->get('/movies/',\App\Controllers\MoviesController::class .':home')->setName('movies');
+$app->get('/movie/',\App\Controllers\MoviesController::class .':home')->setName('movies');
 $app->run();

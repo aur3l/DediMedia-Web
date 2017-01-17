@@ -4,21 +4,18 @@ namespace App\Controllers;
 class SearchsController extends Controller {
 
   function home($request,$response, $args = []){
-    $series = $this->container->tvdb->getSeries($request->getParam('term'));
-    $array = [];
-    foreach ($series as $key => $value ){
-      $vals = get_object_vars($value);
-      $array[] = array(
-        'id' => $vals['id'],
-        'value' => $vals['name'],
-        'type' => "series"
-      );;
+    $medias = $this->container->tmdb->getSearchApi()->searchMulti($request->getParam('id'));
+    //$this->getArray($medias);
+    foreach ($medias['results'] as $key => $value ){
+      if($value['media_type'] == "tv" or $value['media_type'] == "movie"){
+        $name = ($value['media_type'] == "tv") ? $value['original_name'] : $value['title'];
+        $array[] = array(
+          'id' => $value['id'],
+          'value' => $name,
+          'type' => $value['media_type']
+        );;
+      }
     }
-    
-    /*echo "<pre>";
-    print_r($array);
-    echo "</pre>";
-    die();*/
     return  $response->withJson($array);
   }
 

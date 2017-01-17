@@ -6,6 +6,7 @@ use Intervention\Image\ImageManager;
 use Slim\Flash\Messages;
 use Tmdb\ApiToken;
 use ColorThief\ColorThief;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
 
 $container = $app->getContainer();
 
@@ -40,11 +41,6 @@ $container['configdefault'] = function($container){
 $container['couchpotato'] = function ($container){
   $couchpotato = new CouchPotato('http://couchpotato.aur3l.fr','972fffdca1d44f9aa8cbce7427282c6b');
   return $couchpotato;
-};
-
-$container['tvdb'] = function ($container){
-  $tvdb = new Client('http://thetvdb.com','C3ECC3508C662A92');
-  return $tvdb;
 };
 
 $container['tmdb'] = function ($container){
