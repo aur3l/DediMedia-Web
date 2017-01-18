@@ -32,6 +32,7 @@ class TvController extends Controller {
       $data['season_list'][$numS] = $season_list->data;
       $data['season_list'][$numS] = get_object_vars($data['season_list'][$numS]);
       foreach ($data['season_list'][$numS] as $numE => $episode) {
+        
         $data['season_list'][$numS][$numE] = get_object_vars($this->container->tvdb->getEpisode($id, $numS, $numE));;
       }
     }
