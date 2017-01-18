@@ -29,7 +29,7 @@ class TvController extends Controller {
       foreach ($season as $numE => $episode) {
         $episode = $this->container->tvdb->getEpisode($id, $numS, $numE);
         $episode = $this->ObjecttoArray($episode);
-        $data['seasons'][$numS]['episodes'][$numE]['info'] = $episode;
+        $data['seasons'][$numS][$numE]['info'] = $episode;
       }
     }
     $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
