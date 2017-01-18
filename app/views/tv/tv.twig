@@ -148,14 +148,14 @@
         <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
           {% for key, ep in season %}
             <div class="episode col-xs-12 col-sm-6 col-md-4">
-              <div class="episode-inner" style="background-image:url('{% if info.thumbnail != null %}http://thetvdb.com/banners/{{info.thumbnail}}{% else %}http://thetvdb.com/banners/{{fanArt}}{% endif %}');">
+              <div class="episode-inner" style="background-image:url('{% if ep.info.thumbnail != null %}http://thetvdb.com/banners/{{ep.info.thumbnail}}{% else %}http://thetvdb.com/banners/{{fanArt}}{% endif %}');">
                 <div class="episode-content">
                   <h3>{{name}}</h3>
                   <h4><span class="label label-default">S{{ep.info.season}}E{{ep.info.number}}</span> {{ep.name}}</h4>
                   <h6>{{ep.info.date|date("l d F Y")}}</h6>
                   <p class="episode-overview">
-                  {% if info.overview != null %}
-                    {{info.overview}}
+                  {% if ep.info.overview != null %}
+                    {{ep.info.overview}}
                   {% else %}
                     Nous ne disposons pas d'un résumé traduit en français.
                   {% endif %}
