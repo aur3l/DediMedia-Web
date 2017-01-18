@@ -147,6 +147,7 @@
       {% for key, season in seasons %}
         <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
         {% for key, ep in season.episodes %}
+            {{dump(ep)}}
             <div class="episode col-xs-12 col-sm-6 col-md-4">
               <div class="episode-inner" style="background-image:url('{% if ep.still_path != null %}http://image.tmdb.org/t/p/w500{{ep.still_path}}{% else %}http://image.tmdb.org/t/p/w500{{backdrop_path}}{% endif %}');">
                 <div class="episode-content">
