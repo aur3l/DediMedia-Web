@@ -56,7 +56,7 @@
                     <h1 class="series-title">{{name}}</h1>
                     <h4 class="series-genres">
                       {% for key, genre in genres %}
-                        {{genre.name}}{% if not loop.last %},{% endif %}
+                        {{genre}}{% if not loop.last %},{% endif %}
                       {% endfor %}
                     </h4>
                     <div class="series-detail">
@@ -69,15 +69,11 @@
                     <dl>
                         <dt>Chaîne :</dt>
                         <dd><span class="label label-default">
-                          {% for key, network in networks %}
-                              {% if loop.last %}
-                                <em>{{network.name}}</em>
-                              {% endif %}
-                          {% endfor %}
+                            <em>{{network}}</em>
                         </span></dd>
                         <dt>Première diffusion :</dt>
-                        <dd><small class="firstAired">{{first_air_date|date('l d F Y')}}</small></dd>
-                        <dt>Derniere diffussion :</dt>
+                        <dd><small class="firstAired">{{firstAired.date|date('l d F Y')}}</small></dd>
+                        <dt>Diffusée le :</dt>
                         <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
                         <dt>Notée :</dt>
                         <dd><span class="label label-default">{{vote_average}}</span></dd>

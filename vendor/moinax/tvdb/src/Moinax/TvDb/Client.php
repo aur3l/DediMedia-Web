@@ -211,7 +211,7 @@ class Client
 
     /**
      * Find banners that match a filter string
-     * Eg: poster or season 
+     * Eg: poster or season
     */
     public function getBannersFiltered($serieId,$filter) {
         $data = $this->getBanners($serieId);
@@ -310,7 +310,7 @@ class Client
 
         return new Episode($data->Episode);
     }
-    
+
     /**
      * @param      $serieId
      * @param      $airdate
@@ -445,21 +445,6 @@ class Client
         }
 
         $simpleXml = simplexml_load_string($data);
-        if (!$simpleXml) {
-            if (extension_loaded('libxml')) {
-                $xmlErrors = libxml_get_errors();
-                $errors = array();
-                foreach ($xmlErrors as $error) {
-                    $errors[] = sprintf('Error in file %s on line %d with message : %s', $error->file, $error->line, $error->message);
-                }
-                if (count($errors) > 0) {
-
-                    throw new XmlException(implode("\n", $errors));
-                }
-            }
-            throw new XmlException('Xml file could not be loaded');
-        }
-
         return $simpleXml;
     }
 
