@@ -17,55 +17,27 @@ class TvController extends Controller {
     $this->render($response, 'tv/home.twig',$data);
   }
 
-  function tv($request,$response, $args = []){
-    try {
-      // On récupére l'id de TmDb grace a l'id de TvDb par parametre GET et on le renvoit.
-      $TvDbid = $this->container->tmdb->getFindApi()->findBy($args['tvdbId'], [
-        'external_source' => 'tvdb_id'
-      ]);
+  function tv($request,$response, $args = []) {
+    $id = $args['tvdbId'];
+    $serie =  json_decode($this->container->sickrage->show($id), true);
+    $data  = $serie['data'];
 
-      if($TvDbid['tv_results'] == null) {
-        // Si l'id comme argument est celui-ci de TmDb
-        $id = $args['tvdbId'];
-      } else {
-        $id = $TvDbid['tv_results']['0']['id'];
+    $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
+    $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
+    $data['banner'] = $this->multiRezise($nameposter, $id, "tmp/covers",['small']);
+
+    $data['palette'] = ColorThief::getPalette($nameposter, 2);
+    foreach ($data['season_list'] as $numS) {
+      $season_list = json_decode($this->container->sickrage->showSeasons($id, $numS));
+      $data['season_list'][$numS] = $season_list->data;
+      foreach ($data['season_list'][$numS] as $numE => $episode) {
+        $data['season_list'][$numS][$numE] = $this->container->tvdb->getEpisode($id, $numS, $numE);
       }
-
-      // On récupére les infos de la série.
-      $data = $this->container->tmdb->getTvApi()->getTvshow($id, array('language' => 'fr'));
-
-      if($TvDbid['tv_results'] == null) {
-        $data['external_ids'] = $this->container->tmdb->getTvApi()->getExternalIds($id);
-      } else {
-        $data['external_ids']['tvdb_id'] = $args['tvdbId'];
-      }
-
-      // On récupéré les infos de la serie par l'api SickRage
-      $config = json_decode($this->container->sickrage->show($data['external_ids']['tvdb_id']), true);
-      $data['config'] = $config['data'];
-
-      // On coupé le tableau afin d'y integrer les episodes et au sauvegarde les pochettes des saisons en format small.
-      foreach ($data['seasons'] as $key => $value) {
-        // On récupére les episodes des saisons avec l'id et le numéro de la saison.
-        $data['seasons'][$key] = $this->container->tmdb->getTvSeasonApi()->getSeason($id, $value['season_number'], array('language' => 'fr'));
-      }
-
-      $data['poster_path'] = $this->multiRezise($this->container->sickrage->showGetPoster($data['external_ids']['tvdb_id']), $data['external_ids']['tvdb_id'], "tmp/covers",['small']);;
-
-      $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['small'], 2,10, array('w' => 200, 'h' => 294));
-
-      foreach ($ColorThief as $key => $rgb) {
-        $data['palette'][$key] = $this->rgb2hex($rgb);
-      }
-      $this->render($response, 'tv/tv.twig',$data);
-
-    } catch (TmdbApiException $e) {
-        if (TmdbApiException::STATUS_RESOURCE_NOT_FOUND == $e->getCode()) {
-            $message = 'Cette série n\'existe pas.';
-            $this->container->flash->addMessage('Flash', $message, "danger");
-            return $this->redirect($response,"home");
-        }
     }
+
+    $this->getArray($data);
+
+    $this->render($response, 'tv/tv.twig',$data);
   }
 
   function episode($request,$response, $args){

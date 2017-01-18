@@ -43,6 +43,11 @@ $container['couchpotato'] = function ($container){
   return $couchpotato;
 };
 
+$container['tvdb'] = function ($container){
+  $tvdb = new Client("http://thetvdb.com", "C3ECC3508C662A92");
+  return $tvdb;
+};
+
 $container['tmdb'] = function ($container){
   $token  = new \Tmdb\ApiToken('ffc0856c7d4f5698c42353259ab108be');
   $tmdb   = new \Tmdb\Client($token);

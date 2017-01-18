@@ -9,4 +9,5 @@ return array(
     'Twig_Extensions_' => array($vendorDir . '/twig/extensions/lib'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
+    'Moinax\\TvDb' => array($vendorDir . '/moinax/tvdb/src'),
 );

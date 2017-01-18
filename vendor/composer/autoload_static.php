@@ -184,6 +184,13 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
         ),
+        'M' => 
+        array (
+            'Moinax\\TvDb' => 
+            array (
+                0 => __DIR__ . '/..' . '/moinax/tvdb/src',
+            ),
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
