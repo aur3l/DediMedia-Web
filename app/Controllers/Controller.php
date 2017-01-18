@@ -67,6 +67,18 @@ class Controller {
       return array_reverse($arr, TRUE);
     }
 
+    public function ObjecttoArray($obj) {
+      if(is_object($obj)) $obj = (array) $obj;
+      if(is_array($obj)) {
+          $new = array();
+          foreach($obj as $key => $val) {
+              $new[$key] = $this->ObjecttoArray($val);
+          }
+      }
+      else $new = $obj;
+      return $new;
+    }
+
     // Afficher un tableau avec pre.
     function getArray($array){
       echo "<pre>";
@@ -74,7 +86,7 @@ class Controller {
       echo "</pre>";
       die();
     }
-    
+
     function rgb2hex($rgb) {
       return '#' . sprintf('%02x', $rgb['0']) . sprintf('%02x', $rgb['1']) . sprintf('%02x', $rgb['2']);
     }

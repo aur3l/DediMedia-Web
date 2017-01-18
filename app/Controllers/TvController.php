@@ -17,28 +17,21 @@ class TvController extends Controller {
     $this->render($response, 'tv/home.twig',$data);
   }
 
-  function tv($request,$response, $args = []) {
-    $id = $args['tvdbId'];
-    $serie =  json_decode($this->container->sickrage->show($id), true);
-    $data  = $serie['data'];
+  function tv($request,$response, $args = []){
+    $data = [];
+    $id   = $args['tvdbId'];
 
-    $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
-    $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
-    $data['banner'] = $this->multiRezise($nameposter, $id, "tmp/covers",['small']);
-
-    $data['palette'] = ColorThief::getPalette($nameposter, 2);
-    foreach ($data['season_list'] as $numS) {
-      $season_list = json_decode($this->container->sickrage->showSeasons($id, $numS));
-      $data['season_list'][$numS] = $season_list->data;
-      $data['season_list'][$numS] = get_object_vars($data['season_list'][$numS]);
-      foreach ($data['season_list'][$numS] as $numE => $episode) {
-        $values = $this->container->tvdb->getEpisode($id, $numS, $numE);
-        $data['season_list'][$numS][$numE] = get_object_vars($values);
+    $data = $this->container->tvdb->getSerie($id);
+    $data = $this->ObjecttoArray($data);
+    $seasons = json_decode($this->container->sickrage->showSeasons($id), true);
+    $data['seasons'] = $seasons['data'];
+    foreach ($data['seasons'] as $numS => $season) {
+      foreach ($season as $numE => $episode) {
+        $data['seasons'][$numS][$numE] = array_merge($data['seasons'][$numS][$numE], $this->container->tvdb->getEpisode($id, $numS, $numE));
       }
     }
 
     $this->getArray($data);
-
     $this->render($response, 'tv/tv.twig',$data);
   }
 
