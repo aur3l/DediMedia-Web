@@ -27,11 +27,13 @@ class TvController extends Controller {
     $data['seasons'] = $seasons['data'];
     foreach ($data['seasons'] as $numS => $season) {
       foreach ($season as $numE => $episode) {
-        $data['seasons'][$numS][$numE] = $this->container->tvdb->getEpisode($id, $numS, $numE);
+        $episode = $this->container->tvdb->getEpisode($id, $numS, $numE);
+        $episode = $this->ObjecttoArray($episode);
+        $data['seasons'][$numS][$numE] = $episode;
       }
     }
 
-    $this->getArray($data);
+    $this->getArray($data['seasons']);
     $this->render($response, 'tv/tv.twig',$data);
   }
 
