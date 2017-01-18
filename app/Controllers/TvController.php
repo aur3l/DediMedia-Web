@@ -28,10 +28,13 @@ class TvController extends Controller {
 
     $data['palette'] = ColorThief::getPalette($nameposter, 2);
     foreach ($data['season_list'] as $numS) {
+      $this->getArray($numS);
       $season_list = json_decode($this->container->sickrage->showSeasons($id, $numS));
       $data['season_list'][$numS] = $season_list->data;
+      $data['season_list'][$numS] = get_object_vars($data['season_list'][$numS]);
       foreach ($data['season_list'][$numS] as $numE => $episode) {
-        $data['season_list'][$numS][$numE] = $this->container->tvdb->getEpisode($id, $numS, $numE);
+        $data['season_list'] = [];
+        $data['season_list'][$numS][$numE] = get_object_vars($this->container->tvdb->getEpisode($id, $numS, $numE));;
       }
     }
 

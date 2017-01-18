@@ -74,6 +74,7 @@ class Controller {
       echo "</pre>";
       die();
     }
+    
     function rgb2hex($rgb) {
       return '#' . sprintf('%02x', $rgb['0']) . sprintf('%02x', $rgb['1']) . sprintf('%02x', $rgb['2']);
     }
