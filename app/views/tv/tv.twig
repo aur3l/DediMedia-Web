@@ -151,7 +151,7 @@
               <div class="episode-inner" style="background-image:url('{% if ep.still_path != null %}http://image.tmdb.org/t/p/w500{{ep.still_path}}{% else %}http://image.tmdb.org/t/p/w500{{backdrop_path}}{% endif %}');">
                 <div class="episode-content">
                   <h3>{{name}}</h3>
-                  <h4><span class="label label-default">S{{ep.season_number}}E{{ep.episode_number}}</span> {{ep.name}}</h4>
+                  <h4><span class="label label-default">S{{ep.season}}E{{ep.episode}}</span> {{ep.name}}</h4>
                   <h6>{{ep.air_date|date("l d F Y")}}</h6>
                   <p class="episode-overview">
                     {% if ep.overview != null %}
