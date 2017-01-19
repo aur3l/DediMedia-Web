@@ -18,7 +18,7 @@ require ('../app/Container.php');
 $app->add(new \App\Middlewares\FlashMiddleware($container->view->getEnvironment()));
 
 // Accueil
-$app->get('/',\App\Controllers\PagesController::class .':home')->setName('home');
+$app->get('/',\App\Controllers\TvController::class .':home')->setName('home');
 
 // Accueil
 $app->get('/404/',\App\Controllers\PagesController::class .':home')->setName('404');

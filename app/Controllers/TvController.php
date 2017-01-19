@@ -21,13 +21,37 @@ class TvController extends Controller {
     $data = [];
     $id   = $args['tvdbId'];
 
-    $data = $this->container->tvdb->getSerie($id);
+    $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
+    $data = $serie['serie'];
     $data = $this->ObjecttoArray($data);
-    $seasons = json_decode($this->container->sickrage->showSeasons($id), true);
-    $data['seasons'] = $seasons['data'];
+    foreach ($serie['episodes'] as $key => $episode) {
+      if($episode['thumbnail'] != null){
+        $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
+        if(fopen($thumbnailLien, "r")){
+            $thumbnail = $thumbnailLien;
+        }
+        else{
+            $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+        }
+      }
+      else{
+        $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+      }
+      $data['seasons'][$episode['season']][$episode['number']] = [
+        'name' => $episode['name'],
+        'season' => $episode['season'],
+        'number' => $episode['number'],
+        'firstAired' => $episode['firstAired'],
+        'overview' => $episode['overview'],
+        'rating' => $episode['rating'],
+        'ratingCount' => $episode['ratingCount'],
+        'thumbnail' => $thumbnail
+      ];
+    }
     $actors = $this->ObjecttoArray($this->container->tvdb->getActors($id));
     $data['actors'] =[];
     foreach ($actors as $key => $actor) {
+      if (++$key > 5) break;
       if($actor['image'] != null){
         $imageLien = "http://thetvdb.com/banners/".$actor['image'];
         $image = $this->multiRezise($imageLien, $actor['id'], "tmp/actors",['small']);
@@ -41,7 +65,7 @@ class TvController extends Controller {
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
     $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['small']);
 
-    $ColorThief = ColorThief::getPalette($nameposter, 2,10, array('w' => 190, 'h' => 280));
+    $ColorThief = ColorThief::getPalette($nameposter, 5,10, array('w' => 200, 'h' => 294));
 
     foreach ($ColorThief as $key => $rgb) {
       $data['palette'][$key] = $this->rgb2hex($rgb);

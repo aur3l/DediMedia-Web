@@ -129,6 +129,12 @@
       </div>
   </div>
 <div>
+{% for actor in actors %}
+    {% if loop.first %}
+      <h3>Acteurs :</h3>
+    {% endif %}
+    <img src="{{actor.image.small}}" alt="..." class="img-responsive img-thumbnail" width="100">
+{% endfor %}
 <div class="container-fluid">
   <ul class="nav nav-pills">
     {% for key, season in seasons %}
@@ -144,21 +150,18 @@
   </ul>
   <div class="episode-detailed row">
     <div class="tab-content">
-      {% for actor in actors %}
-          <img src="{{actor.image.small}}" alt="..." class="img-rounded">
-      {% endfor %}
       {% for key, season in seasons %}
         <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
           {% for key, ep in season %}
             <div class="episode col-xs-12 col-sm-6 col-md-4">
-              <div class="episode-inner" style="background-image:url('{% if ep.info.thumbnail != null %}http://thetvdb.com/banners/{{ep.info.thumbnail}}{% else %}http://thetvdb.com/banners/{{fanArt}}{% endif %}');">
+              <div class="episode-inner" style="background-image:url('{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}');">
                 <div class="episode-content">
                   <h3>{{name}}</h3>
-                  <h4><span class="label label-default">S{{ep.info.season}}E{{ep.info.number}}</span> {{ep.name}}</h4>
-                  <h6>{{ep.info.date|date("l d F Y")}}</h6>
+                  <h4><span class="label label-default">S{{ep.season}}E{{ep.number}}</span> {{ep.name}}</h4>
+                  <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
                   <p class="episode-overview">
-                  {% if ep.info.overview != null %}
-                    {{ep.info.overview}}
+                  {% if ep.overview != null %}
+                    {{ep.overview}}
                   {% else %}
                     Nous ne disposons pas d'un résumé traduit en français.
                   {% endif %}
