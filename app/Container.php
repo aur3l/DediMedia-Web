@@ -13,7 +13,7 @@ $container = $app->getContainer();
 $container['view'] = function ($container) {
     $dir = dirname(__DIR__);
     $view = new \Slim\Views\Twig($dir.'/app/views', [
-        'cache' => $dir.'/public/tmp/cache',
+        'cache' => false, //$dir.'/public/tmp/cache',
         'debug' => true
     ]);
 
