@@ -25,13 +25,18 @@ class TvController extends Controller {
     $data = $this->ObjecttoArray($data);
     $seasons = json_decode($this->container->sickrage->showSeasons($id), true);
     $data['seasons'] = $seasons['data'];
-    foreach ($data['seasons'] as $numS => $season) {
-      foreach ($season as $numE => $episode) {
-        $episode = $this->container->tvdb->getEpisode($id, $numS, $numE);
-        $episode = $this->ObjecttoArray($episode);
-        $data['seasons'][$numS][$numE]['info'] = $episode;
+    $actors = $this->ObjecttoArray($this->container->tvdb->getActors($id));
+    $data['actors'] =[];
+    foreach ($actors as $key => $actor) {
+      if($actor['image'] != null){
+        $imageLien = "http://thetvdb.com/banners/".$actor['image'];
+        $image = $this->multiRezise($imageLien, $actor['id'], "tmp/actors",['small']);
+        $data['actors'][$key]['id'] = $actor['id'];
+        $data['actors'][$key]['name'] = $actor['name'];
+        $data['actors'][$key]['image'] = $image;
       }
     }
+    //$this->getArray($data['actors']);
     $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
     $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['small']);

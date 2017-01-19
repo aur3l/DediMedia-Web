@@ -144,6 +144,9 @@
   </ul>
   <div class="episode-detailed row">
     <div class="tab-content">
+      {% for actor in actors %}
+          <img src="{{actor.image.small}}" alt="..." class="img-rounded">
+      {% endfor %}
       {% for key, season in seasons %}
         <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
           {% for key, ep in season %}
