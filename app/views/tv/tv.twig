@@ -145,7 +145,7 @@
                     <div class="episode-inner" style="background-image:url('{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}');">
                       <div class="episode-content">
                         <h3>{{name}}</h3>
-                        <h4><span class="label label-default">S{{ep.season|round}}E{{ep.number}}</span>{{ep.name}}</h4>
+                        <h4><span class="label label-default">S{{ep.season|round(1, 'floor')}}E{{ep.number}}</span>{{ep.name}}</h4>
                         <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
                         <p class="episode-overview">
                         {% if ep.overview != null %}
