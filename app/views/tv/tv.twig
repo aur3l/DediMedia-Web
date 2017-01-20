@@ -35,7 +35,7 @@
   .episode-list .episode-overview{margin-bottom:20px;height:120px}
   .label-default{ background-color:{{palette.2}};}
   .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ background-color:{{palette.2}};}
-  .list-seasons h3 { display: block;}
+  .list-seasons h3 { display: inline-block; }
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="padding:0; margin:0px;">
@@ -108,7 +108,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3 col-lg-3">
-        <h2>Production</h2>
+        <h3>Production</h3>
         <dl>
             <dt>Chaîne :</dt>
             <dd><span class="label label-default">
@@ -130,7 +130,7 @@
       </div>
       <div class="col-md-9 col-lg-9">
         <div class="nav nav-pills list-seasons">
-          <h2>Saison(s) :</h2>
+          <h3>Saison(s) :</h3>
           {% for key, season in seasons %}
             <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">
               {% if key == 0 %}Extra{% else %}{{key}}{% endif %}
