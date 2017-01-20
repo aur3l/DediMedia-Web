@@ -46,7 +46,7 @@
                 <div class="col-md-2 col-lg-2" style="text-align:left;">
                     <img src="{{ poster_path.small}}">
                 </div>
-                <div class="col-md-8 col-lg-8">
+                <div class="col-md-10 col-lg-10">
                     <h1 class="series-title">{{name}}</h1>
                     <h4 class="series-genres">
                       {% for key, genre in genres %}
@@ -57,21 +57,6 @@
                       <h2>Synopsis</h2>
                       <p class="lead">{{overview}}</p>
                     </div>
-                </div>
-                <div class="col-sm-2 col-md-2 col-lg-2" style="text-align:right;">
-                    <h2>Production</h2>
-                    <dl>
-                        <dt>Chaîne :</dt>
-                        <dd><span class="label label-default">
-                            <em>{{network}}</em>
-                        </span></dd>
-                        <dt>Première diffusion :</dt>
-                        <dd><small class="firstAired">{{firstAired.date|date('l d F Y')}}</small></dd>
-                        <dt>Diffusée le :</dt>
-                        <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
-                        <dt>Notée :</dt>
-                        <dd><span class="label label-default">{{vote_average}}</span></dd>
-                    </dl>
                 </div>
             </div>
             <div class="row">
@@ -128,6 +113,19 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3 col-md-2">
+        <h2>Production</h2>
+        <dl>
+            <dt>Chaîne :</dt>
+            <dd><span class="label label-default">
+                <em>{{network}}</em>
+            </span></dd>
+            <dt>Première diffusion :</dt>
+            <dd><small class="firstAired">{{firstAired.date|date('l d F Y')}}</small></dd>
+            <dt>Diffusée le :</dt>
+            <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
+            <dt>Notée :</dt>
+            <dd><span class="label label-default">{{vote_average}}</span></dd>
+        </dl>
         {% for actor in actors %}
             {% if loop.first %}
               <h3>Acteurs :</h3>
