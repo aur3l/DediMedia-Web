@@ -70,7 +70,7 @@ class TvController extends Controller {
     foreach ($ColorThief as $key => $rgb) {
       $data['palette'][$key] = $this->rgb2hex($rgb);
     }
-    $this->getArray($data);
+    //$this->getArray($data);
     $this->render($response, 'tv/tv.twig',$data);
   }
 
