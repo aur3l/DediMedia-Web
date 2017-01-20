@@ -39,13 +39,6 @@
 {% block content %}
 <div class="container-fluid" style="padding:0; margin:0px;">
   <div class="series-container">
-      <div class="row">
-        {% for key, color in palette %}
-        <div class="col-lg-1" style="width:150px; height:150px; background: {{color}}; line-height:150px; text-align:center; color:white;">
-          {{color}}
-        </div>
-        {% endfor %}
-      </div>
       <div class="series-inner" style="background: linear-gradient(to bottom right, {{palette.0}},{{palette.2}});">
           <div class="series-content">
             <div class="row">

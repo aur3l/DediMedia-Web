@@ -7,6 +7,24 @@ body {
   padding-top: 50px;
 }
 
+@font-face {
+	font-family: 'Avenir Next LT Pro';
+	src: url('/fonts/AvenirNextLTPro-Regular.eot');
+	src: url('/fonts/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/AvenirNextLTPro-Regular.woff') format('woff'),
+		url('/fonts/AvenirNextLTPro-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Avenir Next Ultra Light';
+	src: url('/fonts/AvenirNextLTPro-UltLtCn.eot');
+	src: url('/fonts/AvenirNextLTPro-UltLtCn.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/AvenirNextLTPro-UltLtCn.woff') format('woff'),
+		url('/fonts/AvenirNextLTPro-UltLtCn.ttf') format('truetype');
+}
+
 
 /*
  * Global add-ons
@@ -22,17 +40,29 @@ body {
  * Hide default border to remove 1px line.
  */
  .navbar{
-   background: rgba(202,73,53,1);
-   background: -moz-linear-gradient(-45deg, rgba(202,73,53,1) 0%, rgba(231,148,85,1) 100%);
-   background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(202,73,53,1)), color-stop(100%, rgba(231,148,85,1)));
-   background: -webkit-linear-gradient(-45deg, rgba(202,73,53,1) 0%, rgba(231,148,85,1) 100%);
-   background: -o-linear-gradient(-45deg, rgba(202,73,53,1) 0%, rgba(231,148,85,1) 100%);
-   background: -ms-linear-gradient(-45deg, rgba(202,73,53,1) 0%, rgba(231,148,85,1) 100%);
-   background: linear-gradient(135deg, rgba(202,73,53,1) 0%, rgba(231,148,85,1) 100%);
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca4935', endColorstr='#e79455', GradientType=1 );
+   background: white;
+   height: 82px;
+}
+.navbar .container{
+  height: 42px;
+  padding: 20px 0;
+}
+.navbar-nav{
+  height: 42px;
+}
+ .navbar .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+   color: black;
+   font-size:16px;
+   font-family: 'Source Sans Pro', 'Arial', sans-serif;
  }
- .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
-   color: white;
+ .navbar-nav>li>a:hover{
+   background: none;
+   text-decoration: underline;
+ }
+ .navbar-brand img, .navbar-brand {
+   height: 42px;
+   padding: 0;
+   margin: 0; margin-right: 15px;
  }
 .navbar-fixed-top {
   border: 0;

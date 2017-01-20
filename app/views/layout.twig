@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/bootstrap-notify.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Proy">
     <style media="screen">
     {% block style %}{% endblock %}
     ul.ui-autocomplete {
@@ -17,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -26,11 +27,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="{{path_for('tvs')}}" class="navbar-brand">MediaDb</a>
+          <a class="navbar-brand" href="{{path_for('home')}}">
+            <img alt="Brand" src="/img/logo.png">
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="{{path_for('tvs')}}">Séries</a></li>
+            <li><a href="{{path_for('tvs')}}">Accueil</a></li>
+              <li><a href="{{path_for('tvs')}}">Séries</a></li>
           <li><a href="{{path_for('movies')}}">Films</a></li>
           </ul>
           <form class="navbar-form navbar-left">
@@ -49,8 +53,8 @@
           </div>
         {% endfor %}
       </div>
-      {% block content %}{% endblock %}
     </div>
+    {% block content %}{% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://localhost:35729/livereload.js" charset="utf-8"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
