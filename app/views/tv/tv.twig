@@ -50,6 +50,11 @@
                 </div>
                 <div class="col-md-9 col-lg-9">
                     <h1 class="series-title">{{name}}</h1>
+                    <h4 class="series-genres">
+                      {% for key, genre in genres %}
+                        {{genre}}{% if not loop.last %},{% endif %}
+                      {% endfor %}
+                    </h4>
                     <div class="text-left">
                       {% if config != null %}
                         {% if config.GUI.display_show_specials == 0 %}
@@ -89,11 +94,6 @@
                         </a>
                       {% endif %}
                     </div>
-                    <h4 class="series-genres">
-                      {% for key, genre in genres %}
-                        {{genre}}{% if not loop.last %},{% endif %}
-                      {% endfor %}
-                    </h4>
                     <div class="series-detail">
                       <h2>Synopsis</h2>
                       <p class="lead">{{overview}}</p>
