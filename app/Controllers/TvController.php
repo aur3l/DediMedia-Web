@@ -63,14 +63,14 @@ class TvController extends Controller {
     //$this->getArray($data['actors']);
     $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
-    $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['small']);
+    $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
 
-    $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['small'], 4,25, array('w' => 200, 'h' => 294));
+    $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
 
     foreach ($ColorThief as $key => $rgb) {
       $data['palette'][$key] = $this->rgb2hex($rgb);
     }
-    //$this->getArray($data);
+    $this->getArray($data);
     $this->render($response, 'tv/tv.twig',$data);
   }
 
