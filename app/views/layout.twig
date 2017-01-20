@@ -3,9 +3,9 @@
   <head>
     <title>:: MediaDb : {{title}} ::</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/bootstrap-notify.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Proy">
     <style media="screen">
     {% block style %}{% endblock %}
     ul.ui-autocomplete {
@@ -37,7 +37,7 @@
               <li><a href="{{path_for('tvs')}}">Séries</a></li>
           <li><a href="{{path_for('movies')}}">Films</a></li>
           </ul>
-          <form class="navbar-form navbar-left">
+          <form class="navbar-form navbar-right">
             <input type="text" class="form-control" data-provide="typeahead" placeholder="Recherche...">
           </form>
         </div>
