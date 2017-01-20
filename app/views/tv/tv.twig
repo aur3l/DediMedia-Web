@@ -35,7 +35,7 @@
   .episode-list .episode-overview{margin-bottom:20px;height:120px}
   .label-default{ background-color:{{palette.2}};}
   .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ background-color:{{palette.2}};}
-  .poster{ margin-top:-250px; }
+  .poster{ position:absolute; margin-top: ;}
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="padding:0; margin:0px;">
@@ -44,10 +44,13 @@
       <div class="series-inner">
           <div class="series-content">
             <div class="row">
-                <div class="col-md-3 col-lg-3" style="text-align:left;"></div>
+                <div class="col-md-3 col-lg-3" style="text-align:left;">
+                    <img src="{{ poster_path.medium}}" class="poster" width="225">
+                </div>
                 <div class="col-md-9 col-lg-9">
                     <h1 class="series-title">{{name}}</h1>
                     <div class="text-left">
+                      <h2>Actions</h2>
                       {% if config != null %}
                         {% if config.GUI.display_show_specials == 0 %}
                           <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
@@ -105,8 +108,7 @@
 <div class="container-fluid" style="padding:0; margin:0px;">
   <div class="container">
     <div class="row">
-      <div class="col-md-3 col-lg-3 poster">
-        <img src="{{ poster_path.medium}}" class="img-responsive">
+      <div class="col-md-3 col-lg-3">
         <h2>Production</h2>
         <dl>
             <dt>Chaîne :</dt>
