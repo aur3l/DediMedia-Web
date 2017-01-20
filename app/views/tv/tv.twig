@@ -36,7 +36,7 @@
   .label-default{ background-color:{{palette.2}};}
   .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{ background-color:{{palette.2}};}
   .list-seasons h3 { display: inline-block; }
-  .list-seasons a { font-size:24px; color: black; }
+  .list-seasons a { font-size:24px; color: black; margin: 0px 5px; }
 {% endblock %}
 {% block content %}
 <div class="container-fluid" style="padding:0; margin:0px;">
@@ -133,9 +133,7 @@
         <div class="nav nav-pills list-seasons">
           <h3>Saison(s) :</h3>
           {% for key, season in seasons %}
-            <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">
-              {% if key == 0 %}Extra{% else %}{{key}}{% endif %}
-            </a>
+            <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">{% if key == 0 %}Extra{% else %}{{key}}{% endif %}</a>
           {% endfor %}
         </div>
         <div class="episode-detailed row">
