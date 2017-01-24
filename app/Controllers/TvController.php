@@ -20,6 +20,7 @@ class TvController extends Controller {
   function tv($request,$response, $args = []){
     $data = [];
     $id   = $args['tvdbId'];
+    $this->getArray($this->container->config());
 
     $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
     $data = $serie['serie'];
@@ -60,7 +61,6 @@ class TvController extends Controller {
         $data['actors'][$key]['image'] = $image;
       }
     }
-    //$this->getArray($data['actors']);
     $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
     $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
@@ -70,7 +70,6 @@ class TvController extends Controller {
     foreach ($ColorThief as $key => $rgb) {
       $data['palette'][$key] = $this->rgb2hex($rgb);
     }
-    //$this->getArray($data);
     $this->render($response, 'tv/tv.twig',$data);
   }
 

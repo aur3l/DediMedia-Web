@@ -13,7 +13,7 @@ $container = $app->getContainer();
 $container['view'] = function ($container) {
     $dir = dirname(__DIR__);
     $view = new \Slim\Views\Twig($dir.'/app/views', [
-        'cache' => false, //$dir.'/public/tmp/cache',
+        /*'cache' => false,*/$dir.'/public/tmp/cache',
         'debug' => true
     ]);
 
@@ -33,7 +33,7 @@ $container['sickrage'] = function ($container){
   return $sickrage;
 };
 
-$container['configdefault'] = function($container){
+$container['config'] = function($container){
   $data = parse_ini_file("config.ini",true,INI_SCANNER_RAW);
   return $data;
 };
