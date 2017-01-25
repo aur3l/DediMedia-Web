@@ -32,8 +32,8 @@ class TvController extends Controller {
         $img->resize("227", null, function ($constraint) {$constraint->aspectRatio();});
         $img->crop(227, 127, 113, 63);
         $dir = dirname(dirname(__DIR__));
-        $url = $dir.'/public/tmp/covers/'.$key.'_thumbnail.jpg';
-        $urlNo = '/tmp/covers/'.$key.'_thumbnail.jpg';
+        $url = $dir.'/public/tmp/thumbnail/'.$key.'_thumbnail.jpg';
+        $urlNo = '/tmp/thumbnail/'.$key.'_thumbnail.jpg';
         $img->save($url);
         $thumbnail = $urlNo;
       }
