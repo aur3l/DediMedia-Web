@@ -142,10 +142,10 @@
               <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
                 {% for key, ep in season %}
                   <div class="episode">
-                    <div class="episode-inner">
-                      <a href="#" class="episode-thumbnail">
+                    <div class="episode-inner row">
+                      <div class="episode-thumbnail">
                         <img src="{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" alt="" class="img-responsive">
-                      </a>
+                      </div>
                       <div class="episode-content">
                         <h3>{{name}}</h3>
                         <h4>
