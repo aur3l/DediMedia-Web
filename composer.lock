@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f6c7437b2afc65433c9e059e82846c2a",
-    "content-hash": "384dc427f389ba48a6279be71c1729e8",
+    "hash": "463824247c0a09d44d51f63dc63c20da",
+    "content-hash": "30460753b0b0d1fae687f834a949362a",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -594,6 +594,53 @@
                 "thief"
             ],
             "time": "2016-12-18 03:12:25"
+        },
+        {
+            "name": "magicalex/write-ini-file",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Magicalex/WriteiniFile.git",
+                "reference": "b05365225769ffbab3916a0fc7bb87a929ff7497"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Magicalex/WriteiniFile/zipball/b05365225769ffbab3916a0fc7bb87a929ff7497",
+                "reference": "b05365225769ffbab3916a0fc7bb87a929ff7497",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.3.4",
+                "satooshi/php-coveralls": "1.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WriteiniFile\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Magicalex",
+                    "email": "magicalex14000@gmail.com"
+                }
+            ],
+            "description": "Write-ini-file php library for create, remove, erase, add, and update ini file",
+            "homepage": "https://github.com/Magicalex/WriteIniFile",
+            "keywords": [
+                "file",
+                "ini",
+                "write",
+                "write_ini_file"
+            ],
+            "time": "2016-05-17 20:57:58"
         },
         {
             "name": "moinax/tvdb",

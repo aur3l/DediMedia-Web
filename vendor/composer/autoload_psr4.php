@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WriteiniFile\\' => array($vendorDir . '/magicalex/write-ini-file/src'),
     'Tmdb\\' => array($vendorDir . '/php-tmdb/api/lib/Tmdb'),
     'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),

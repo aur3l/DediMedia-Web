@@ -33,11 +33,6 @@ $container['sickrage'] = function ($container){
   return $sickrage;
 };
 
-$container['config'] = function($container){
-  $data = parse_ini_file("config.ini",true,INI_SCANNER_RAW);
-  return $data;
-};
-
 $container['couchpotato'] = function ($container){
   $couchpotato = new CouchPotato('http://couchpotato.aur3l.fr','972fffdca1d44f9aa8cbce7427282c6b');
   return $couchpotato;

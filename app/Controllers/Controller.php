@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
+use WriteiniFile\WriteiniFile;
+
 class Controller {
 
     protected $container;
@@ -89,6 +91,20 @@ class Controller {
 
     function rgb2hex($rgb) {
       return '#' . sprintf('%02x', $rgb['0']) . sprintf('%02x', $rgb['1']) . sprintf('%02x', $rgb['2']);
+    }
+
+    function setConfig($array){
+      $dir = dirname(dirname(__DIR__)).'/public/configTv.ini';
+      $a = new WriteiniFile($dir);
+      $a->update($array);
+      $a->write();
+      return $array;
+    }
+
+    function getConfig(){
+      $dir = dirname(dirname(__DIR__)).'/public/configTv.ini';
+      $data = parse_ini_file($dir,true,INI_SCANNER_RAW);
+      return $data;
     }
 
 }

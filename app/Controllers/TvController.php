@@ -20,7 +20,6 @@ class TvController extends Controller {
   function tv($request,$response, $args = []){
     $data = [];
     $id   = $args['tvdbId'];
-    $this->getArray($this->container->config());
 
     $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
     $data = $serie['serie'];
@@ -61,15 +60,26 @@ class TvController extends Controller {
         $data['actors'][$key]['image'] = $image;
       }
     }
+
     $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
     $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
     $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
 
-    $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
-
-    foreach ($ColorThief as $key => $rgb) {
-      $data['palette'][$key] = $this->rgb2hex($rgb);
+    if(isset($this->getConfig()[$id]['palette'])) {
+      $data['palette'] = $this->getConfig()['73141']['palette'];
     }
+    else {
+      $ColorThief = ColorThief::getPalette("http://0.0.0.0:8080".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+
+      foreach ($ColorThief as $key => $rgb) {
+        $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
+      }
+      $send = $this->setConfig($palette);
+      $data['palette'] = $send[$id]['palette'];
+    }
+
+    //$this->getArray($data);
+
     $this->render($response, 'tv/tv.twig',$data);
   }
 

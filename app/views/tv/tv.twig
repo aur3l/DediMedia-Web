@@ -20,8 +20,9 @@
 
   .episode-detailed{padding-top:20px}
   .episode-detailed .episode{margin-bottom:10px}
+  .episode-detailed .episode-thumbnail{ position:absolute; float:left;}
   .episode-detailed .episode-inner{position:relative;background:transparent no-repeat center center;background-size:cover;padding:5px}
-  .episode-detailed .episode-content{background-color:rgba(0,0,0,0.5);padding:15px;color:#dedede}
+  .episode-detailed .episode-content{}
   .episode-detailed .episode-content h3,.episode-detailed .episode-content h4{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
   .episode-detailed .episode-content h3{margin-top:0}
   .episode-detailed .episode-content h4{padding:5px 0}
@@ -88,7 +89,7 @@
                           Retirer
                         </a>
                       {% else %}
-                        <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': external_ids.tvdb_id}) }}">
+                        <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': external_ids.tvdb_id}) }}"  style="background-color:{{palette.2}}; bottom-colors:{{palette.2}};">
                           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                           Ajouter
                         </a>
@@ -136,13 +137,13 @@
             <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">{% if key == 0 %}Extra{% else %}{{key}}{% endif %}</a>
           {% endfor %}
         </div>
-        <div class="episode-detailed row">
+        <div class="episode-detailed">
           <div class="tab-content">
             {% for key, season in seasons %}
               <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
                 {% for key, ep in season %}
-                  <div class="episode col-xs-12 col-sm-8 col-md-6">
-                    <div class="episode-inner" style="background-image:url('{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}');">
+                  <div class="episode">
+                    <div class="episode-inner">
                       <div class="episode-content">
                         <h3>{{name}}</h3>
                         <h4>

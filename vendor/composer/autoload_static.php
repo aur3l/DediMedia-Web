@@ -14,6 +14,10 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WriteiniFile\\' => 13,
+        ),
         'T' => 
         array (
             'Tmdb\\' => 5,
@@ -70,6 +74,10 @@ class ComposerStaticInit7d26ccb310e853c111429a04c587e0ec
     );
 
     public static $prefixDirsPsr4 = array (
+        'WriteiniFile\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/magicalex/write-ini-file/src',
+        ),
         'Tmdb\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-tmdb/api/lib/Tmdb',
