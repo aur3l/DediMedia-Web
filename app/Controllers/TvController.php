@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use ColorThief\ColorThief;
 use Tmdb\Exception\TmdbApiException;
+use Intervention\Image\ImageManager;
 
 class TvController extends Controller {
 
@@ -27,6 +28,8 @@ class TvController extends Controller {
     foreach ($serie['episodes'] as $key => $episode) {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
+        $img = $this->container->resize->make($thumbnailLien);
+        die($img->crop(100, 100, 25, 25));
         if(fopen($thumbnailLien, "r")){
             $thumbnail = $thumbnailLien;
         }
