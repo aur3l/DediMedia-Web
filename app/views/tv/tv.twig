@@ -144,7 +144,7 @@
                   <div class="episode">
                     <div class="episode-inner">
                       <a href="#" class="episode-thumbnail">
-                        <img src="style={% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" alt="" class="img-responsive">
+                        <img src="{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" alt="" class="img-responsive">
                       </a>
                       <div class="episode-content">
                         <h3>{{name}}</h3>
