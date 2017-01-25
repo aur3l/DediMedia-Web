@@ -57,7 +57,8 @@ $container['sizes'] = function ($container){
   $sizes = [
     'small'  => '200',
     'medium' => '500',
-    'big'    => '1000'
+    'big'    => '1000',
+    'thumbnail' => '227'
   ];
   return $sizes;
 };
