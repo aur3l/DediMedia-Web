@@ -44,7 +44,7 @@ class TvController extends Controller {
       $urlNo = '/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
 
       if(!file_exists($url)){
-        $img = $this->container->resize->make($thumbnailLien);
+        $img = $this->container->resize->make($thumbnail);
         $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
         $img->crop(227, 127);
         $img->save($url);
