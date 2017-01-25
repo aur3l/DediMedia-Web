@@ -32,7 +32,7 @@ class TvController extends Controller {
         $thumbnailLien = $img->crop(100, 100, 25, 25);
         $dir = dirname(dirname(__DIR__));
         $url = $dir.'/public/tmp/covers/'.$key.'.jpg';
-        $urlNo = '/public/tmp/covers/'.$key.'.jpg';
+        $urlNo = '/tmp/covers/'.$key.'.jpg';
         $img->save($url);
         $thumbnailLien = $urlNo;
         if(fopen($thumbnailLien, "r")){
