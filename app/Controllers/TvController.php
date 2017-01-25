@@ -28,19 +28,30 @@ class TvController extends Controller {
     foreach ($serie['episodes'] as $key => $episode) {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
-        $dir = dirname(dirname(__DIR__));
-        $url = $dir.'/public/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
-        $urlNo = '/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
-
-        if(!file_exists($url)){
-          $img = $this->container->resize->make($thumbnailLien);
-          $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
-          $img->crop(227, 127);
-          $img->save($url);
+        if(fopen($thumbnailLien, "r")){
+            $thumbnail = $thumbnailLien;
         }
-
-        $thumbnail = $urlNo;
+        else{
+            $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+        }
       }
+      else{
+        $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+      }
+
+      $dir = dirname(dirname(__DIR__));
+      $url = $dir.'/public/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
+      $urlNo = '/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
+
+      if(!file_exists($url)){
+        $img = $this->container->resize->make($thumbnailLien);
+        $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
+        $img->crop(227, 127);
+        $img->save($url);
+      }
+
+      $thumbnail = $urlNo;
+
       $data['seasons'][$episode['season']][$episode['number']] = [
         'name' => $episode['name'],
         'season' => $episode['season'],
@@ -70,10 +81,11 @@ class TvController extends Controller {
     $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
 
     if(isset($this->getConfig()[$id]['palette'])) {
-      $data['palette'] = $this->getConfig()[$id]['palette'];
+      $data['palette'] = $this->getConfig()['73141']['palette'];
     }
     else {
-      $ColorThief = ColorThief::getPalette("http://".$_SERVER['SERVER_NAME'].$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+      $ColorThief = ColorThief::getPalette("http://0.0.0.0:8080".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+
       foreach ($ColorThief as $key => $rgb) {
         $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
       }
