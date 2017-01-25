@@ -24,8 +24,6 @@ class TvController extends Controller {
 
     $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
     $data = $serie['serie'];
-    $send[$id] = $data;
-    $send = $this->setConfig($send[$id]);
     $data = $this->ObjecttoArray($data);
     foreach ($serie['episodes'] as $key => $episode) {
       if($episode['thumbnail'] != null){
