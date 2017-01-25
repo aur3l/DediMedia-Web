@@ -88,10 +88,10 @@ class TvController extends Controller {
       foreach ($ColorThief as $key => $rgb) {
         $data['palette'][$key] = $this->rgb2hex($rgb);
       }
-      $send = $this->setConfig($data[$id]);
       $data['palette'] = $send[$id]['palette'];
     }
-
+    $data[$id] = $data;
+    $send = $this->setConfig($data[$id]);
     //$this->getArray($data);
 
     $this->render($response, 'tv/tv.twig',$data);
