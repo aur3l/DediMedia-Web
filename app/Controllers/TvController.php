@@ -86,12 +86,12 @@ class TvController extends Controller {
       $ColorThief = ColorThief::getPalette("http://".$_SERVER['SERVER_NAME'].$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
 
       foreach ($ColorThief as $key => $rgb) {
-        $data['palette'][$key] = $this->rgb2hex($rgb);
+        $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
       }
+      $send = $this->setConfig($palette);
       $data['palette'] = $send[$id]['palette'];
     }
-    $data[$id] = $data;
-    $send = $this->setConfig($data[$id]);
+
     //$this->getArray($data);
 
     $this->render($response, 'tv/tv.twig',$data);
