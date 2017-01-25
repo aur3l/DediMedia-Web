@@ -29,8 +29,8 @@ class TvController extends Controller {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
         $dir = dirname(dirname(__DIR__));
-        $url = $dir.'/public/tmp/thumbnail/'.$key.'_thumbnail.jpg';
-        $urlNo = '/tmp/thumbnail/'.$key.'_thumbnail.jpg';
+        $url = $dir.'/public/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
+        $urlNo = '/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
 
         if(!file_exists($url)){
           $img = $this->container->resize->make($thumbnailLien);
