@@ -34,7 +34,7 @@ class TvController extends Controller {
         $url = $dir.'/public/tmp/covers/'.$key.'.jpg';
         $urlNo = '/tmp/covers/'.$key.'.jpg';
         $img->save($url);
-        $thumbnailLien = $urlNo;
+        $thumbnail = $urlNo;
       }
       $data['seasons'][$episode['season']][$episode['number']] = [
         'name' => $episode['name'],
