@@ -73,8 +73,7 @@ class TvController extends Controller {
       $data['palette'] = $this->getConfig()['73141']['palette'];
     }
     else {
-      die($_SERVER['SERVER_NAME']);
-      $ColorThief = ColorThief::getPalette("http://0.0.0.0:8080".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+      $ColorThief = ColorThief::getPalette("http://.".$_SERVER['SERVER_NAME'].$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
 
       foreach ($ColorThief as $key => $rgb) {
         $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
