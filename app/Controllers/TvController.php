@@ -29,7 +29,7 @@ class TvController extends Controller {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
         $img = $this->container->resize->make($thumbnailLien);
-        die($img->crop(100, 100, 25, 25));
+        $thumbnailLien = $img->crop(100, 100, 25, 25);
         if(fopen($thumbnailLien, "r")){
             $thumbnail = $thumbnailLien;
         }
