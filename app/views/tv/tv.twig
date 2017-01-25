@@ -143,10 +143,10 @@
                 {% for key, ep in season %}
                   <div class="episode">
                     <div class="episode-inner row">
-                      <div class="episode-thumbnail col-xs-6 col-md-4" style="padding:0px;">
+                      <div class="episode-thumbnail col-xs-6 col-md-3" style="padding:0px;">
                         <img src="{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" class="img-responsive" alt="">
                       </div>
-                      <div class="episode-content col-xs-12 col-sm-6 col-md-8" style="padding:0px; padding-left:2px;">
+                      <div class="episode-content col-xs-12 col-sm-6 col-md-9" style="padding:0px; padding-left:2px;">
                         <h4>
                           {{ep.name}}
                           <span class="label label-default">S{% if ep.season < 10 %}0{% endif %}{{ep.season}}E{% if ep.number < 10 %}0{% endif %}{{ep.number}}</span>
