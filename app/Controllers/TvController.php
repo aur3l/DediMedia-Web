@@ -28,13 +28,17 @@ class TvController extends Controller {
     foreach ($serie['episodes'] as $key => $episode) {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
-        $img = $this->container->resize->make($thumbnailLien);
-        $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
-        $img->crop(227, 127);
         $dir = dirname(dirname(__DIR__));
         $url = $dir.'/public/tmp/thumbnail/'.$key.'_thumbnail.jpg';
         $urlNo = '/tmp/thumbnail/'.$key.'_thumbnail.jpg';
-        $img->save($url);
+
+        if(!file_exists($url)){
+          $img = $this->container->resize->make($thumbnailLien);
+          $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
+          $img->crop(227, 127);
+          $img->save($url);
+        }
+
         $thumbnail = $urlNo;
       }
       $data['seasons'][$episode['season']][$episode['number']] = [
