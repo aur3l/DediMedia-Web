@@ -20,7 +20,6 @@
 
   .episode-detailed{padding-top:20px}
   .episode-detailed .episode{margin-bottom:10px}
-  .episode-detailed .episode-thumbnail{ position:absolute; float:left;}
   .episode-detailed .episode-inner{position:relative;background:transparent no-repeat center center;background-size:cover;padding:5px}
   .episode-detailed .episode-content{}
   .episode-detailed .episode-content h3,.episode-detailed .episode-content h4{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
@@ -144,6 +143,9 @@
                 {% for key, ep in season %}
                   <div class="episode">
                     <div class="episode-inner">
+                      <a href="#" class="episode-thumbnail">
+                        <img src="style={% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" alt="" class="img-responsive">
+                      </a>
                       <div class="episode-content">
                         <h3>{{name}}</h3>
                         <h4>
