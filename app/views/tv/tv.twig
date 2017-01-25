@@ -97,6 +97,12 @@
                     <div class="series-detail">
                       <h2>Synopsis</h2>
                       <p class="lead">{{overview}}</p>
+                      {% for actor in actors %}
+                          {% if loop.first %}
+                            <h2>Acteurs :</h2>
+                          {% endif %}
+                          <img src="{{actor.image.small}}" alt="..." class="img-responsive img-thumbnail" width="100">
+                      {% endfor %}
                     </div>
                 </div>
             </div>
@@ -122,12 +128,6 @@
             <dt>Notée :</dt>
             <dd><span class="label label-default">{{vote_average}}</span></dd>
         </dl>
-        {% for actor in actors %}
-            {% if loop.first %}
-              <h3>Acteurs :</h3>
-            {% endif %}
-            <img src="{{actor.image.small}}" alt="..." class="img-responsive img-thumbnail" width="100">
-        {% endfor %}
       </div>
       <div class="col-md-9 col-lg-9">
         <div class="nav nav-pills list-seasons">
