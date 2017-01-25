@@ -148,8 +148,7 @@
                       </div>
                       <div class="episode-content col-xs-12 col-sm-6 col-md-9" style="padding:0px; padding-left:2px;">
                         <h4 style="padding-top: 0px; margin-top: 0px;">
-                          {{ep.name}}
-                          <span class="label label-default">S{% if ep.season < 10 %}0{% endif %}{{ep.season}}E{% if ep.number < 10 %}0{% endif %}{{ep.number}}</span>
+                          {{ep.name}} <span class="label label-default">S{% if ep.season < 10 %}0{% endif %}{{ep.season}}E{% if ep.number < 10 %}0{% endif %}{{ep.number}}</span>
                         </h4>
                         <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
                         <p class="episode-overview">
