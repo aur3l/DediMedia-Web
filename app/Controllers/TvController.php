@@ -35,15 +35,6 @@ class TvController extends Controller {
         $urlNo = '/tmp/covers/'.$key.'.jpg';
         $img->save($url);
         $thumbnailLien = $urlNo;
-        if(fopen($thumbnailLien, "r")){
-            $thumbnail = $thumbnailLien;
-        }
-        else{
-            $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
-        }
-      }
-      else{
-        $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
       }
       $data['seasons'][$episode['season']][$episode['number']] = [
         'name' => $episode['name'],
