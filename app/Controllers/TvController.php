@@ -29,7 +29,8 @@ class TvController extends Controller {
       if($episode['thumbnail'] != null){
         $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
         $img = $this->container->resize->make($thumbnailLien);
-        $thumbnailLien = $img->crop(227, 127, 113, 63);
+        $img->resize("227", null, function ($constraint) {$constraint->aspectRatio();});
+        $img->crop(227, 127, 113, 63);
         $dir = dirname(dirname(__DIR__));
         $url = $dir.'/public/tmp/covers/'.$key.'_thumbnail.jpg';
         $urlNo = '/tmp/covers/'.$key.'_thumbnail.jpg';
