@@ -91,7 +91,6 @@ class TvController extends Controller {
       foreach ($ColorThief as $key => $rgb) {
         $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
       }
-      $send = $this->setConfig($palette);
       $data['palette'] = $send[$id]['palette'];
 
       $cache = fopen('tmp/'.$id.'.json', "w");
