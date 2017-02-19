@@ -96,6 +96,7 @@ class TvController extends Controller {
         $send = $this->setConfig($palette);
         $data['palette'] = $send[$id]['palette'];
       }
+      $this->getArray($data);
       $cache = fopen('tmp/'.$id.'.json', "w");
       $data = json_encode($data);
       fputs($cache, $data);

@@ -42,6 +42,34 @@
     .container {
       padding:0;
     }
+    .row-center{
+      text-align:center;
+    }
+    .row-center .col{
+      display:inline-block;
+      float:none;
+      text-align:left;
+      margin-right:-4px;
+    }
+
+    .img-rounder{
+      display: inline-block;
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .img-rounder img {
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      object-fit: cover;
+      object-position: right center;
+      transition: object-position .25s;
+    }
+    .img-rounder img:hover {
+      object-position: center
+    }
     </style>
 
     <meta charset="utf-8">

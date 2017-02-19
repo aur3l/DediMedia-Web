@@ -103,10 +103,13 @@
               </div>
           </div>
           <h3>Acteurs :</h3>
-          <div class="row" style="text-align:center;">
+          <div class="row row-center">
             {% for actor in actors %}
-              <div class="col-md-2">
-                  <img src="{{actor.image.small}}" width="75%" alt="{{actor.name}}" class="img-responsive img-thumbnail">
+              <div class="col col-md-2" style="text-align:center;">
+                  <div class="img-rounder">
+                    <img src="{{actor.image.small}}" width="75%" alt="{{actor.name}}" class="img-responsive img-thumbnail">
+                  </div>
+                  <h4 style="margin-top:0;">{{actor.name}}</h4>
               </div>
             {% endfor %}
           </div>
