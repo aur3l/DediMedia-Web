@@ -87,17 +87,13 @@ class TvController extends Controller {
       $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
       $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
 
-      if(isset($this->getConfig()[$id]['palette'])) {
-        $data['palette'] = $this->getConfig()[$id]['palette'];
+      $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+      foreach ($ColorThief as $key => $rgb) {
+        $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
       }
-      else {
-        $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
-        foreach ($ColorThief as $key => $rgb) {
-          $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
-        }
-        $send = $this->setConfig($palette);
-        $data['palette'] = $send[$id]['palette'];
-      }
+      $send = $this->setConfig($palette);
+      $data['palette'] = $send[$id]['palette'];
+
       $cache = fopen('tmp/'.$id.'.json', "w");
       $data = json_encode($data);
       fputs($cache, $data);
