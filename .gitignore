@@ -12,3 +12,5 @@ public/tmp/covers/247808_small.jpg
 public/tmp/covers/175001_small.jpg
 
 *.jpg
+
+*.json
