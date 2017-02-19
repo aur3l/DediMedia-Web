@@ -70,7 +70,6 @@ class TvController extends Controller {
       }
       $actors = $this->ObjecttoArray($this->container->tvdb->getActors($id));
 
-      $this->getArray($actors);
       $data['actors'] =[];
       foreach ($actors as $key => $actor) {
         if($key >= 6) break;
@@ -78,6 +77,7 @@ class TvController extends Controller {
           $imageLien = "http://thetvdb.com/banners/".$actor['image'];
           $image = $this->multiRezise($imageLien, $actor['id'], "tmp/actors",['small']);
           $data['actors'][$key]['id'] = $actor['id'];
+          $data['actors'][$key]['role'] = $actor['role'];
           $data['actors'][$key]['name'] = $actor['name'];
           $data['actors'][$key]['image'] = $image;
         }
