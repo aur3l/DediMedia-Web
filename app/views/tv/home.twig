@@ -7,17 +7,11 @@
   .thumbnail .caption{padding:9px;color:#333}
 {% endblock %}
 {% block content %}
-<div class="row" style="text-align: center; padding:0 10px;">
+<div class="row">
   {% for tv in tvs %}
-    <div class="col-md-2 col-sm-4 col-xs-4 posters">
+    <div class="col-md-2 posters center-align">
       <a href="{{ path_for('tv', {'tvdbId': tv.indexerid}) }}"  class="thumbnail">
-        <img src="{{ tv.banner.small}}" alt="Vignette de {{tv.show_name}}" id="{{tv.indexerid}}">
-        <div class="progress">
-          {% set pourcent = tv.stats.downloaded.total/tv.stats.total*100 %}
-          <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="{{ tv.stats.total}}" aria-valuemin="0" aria-valuemax="{{ tv.stats.downloaded.total}}" style="width:{{pourcent|round}}%;">
-            <span class="sr-only">{{ tv.stats.total}}% Complete (success)</span>
-          </div>
-        </div>
+        <img src="{{ tv.banner.small}}" alt="Vignette de {{tv.show_name}}" id="{{tv.indexerid}}" class="responsive-img">
       </a>
     </div>
   {% endfor %}

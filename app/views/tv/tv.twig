@@ -14,6 +14,7 @@
   .search-result:hover img{opacity:1.0}
   .series-content h1,.series-content h3{ margin-top:0px; margin-bottom:5px;}
   .series-content h2{margin-top:15px;}
+  .series-content h3{margin-top:15px;margin-bottom:15px;}
   .search-result .series-overview{height:120px}
   .firstAired{text-transform: capitalize;}
   .lead, .series-genres {font-size:15px; margin-top:0;}
@@ -38,131 +39,133 @@
   .list-seasons h3 { display: inline-block; }
   .list-seasons a { font-size:24px; color: black; margin: 0px 5px; }
 {% endblock %}
+{% block js %}
+{% endblock %}
 {% block content %}
-<div class="container-fluid" style="padding:0; margin:0px;">
-  <div class="series-container" style="background: linear-gradient(to bottom right, {{palette.0}},{{palette.2}});">
-    <div class="container">
-      <div class="series-inner">
-          <div class="series-content">
-            <div class="row">
-                <div class="col-md-3 col-lg-3" style="text-align:left;">
-                    <img src="{{ poster_path.medium}}" width="225">
-                </div>
-                <div class="col-md-9 col-lg-9">
-                    <h1 class="series-title">{{name}}</h1>
-                    <h4 class="series-genres">
-                      {% for key, genre in genres %}
-                        {{genre}}{% if not loop.last %},{% endif %}
-                      {% endfor %}
-                    </h4>
-                    <div class="text-left">
-                      {% if config != null %}
-                        {% if config.GUI.display_show_specials == 0 %}
-                          <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
-                            <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-                            Afficher les extras
-                          </a>
-                        {% else %}
-                          <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
-                            <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
-                            Cacher les extras
-                          </a>
-                        {% endif %}
-                        {% if config.paused == 1%}
-                          <a class="btn btn-success" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 0}) }}">
-                            <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-                            Reprendre
-                          </a>
-                        {% else %}
-                          <a class="btn btn-warning" href="{{ path_for('paused', {'tvdbId': external_ids.tvdb_id,'etat': 1}) }}">
-                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-                            Pause
-                          </a>
-                        {% endif %}
-                        <a class="btn btn-info">
-                          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                          Editer
-                        </a>
-                        <a class="btn btn-danger" href="{{ path_for('delete', {'tvdbId': external_ids.tvdb_id}) }}">
-                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                          Retirer
+<div class="series-container">
+  <div class="container">
+    <div class="series-inner">
+        <div class="series-content">
+          <div class="row">
+              <div class="col-md-3" style="text-align:left;">
+                  <img src="{{ poster_path.medium}}" class="img-responsive">
+              </div>
+              <div class="col-md-9">
+                  <h1 class="series-title">{{name}}</h1>
+                  <h4 class="series-genres">
+                    {% for key, genre in genres %}
+                      {{genre}}{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  </h4>
+                  <div class="text-left">
+                    {% if config != null %}
+                      {% if config.GUI.display_show_specials == 0 %}
+                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': id,'etat': 0}) }}">
+                          <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                          Afficher les extras
                         </a>
                       {% else %}
-                        <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': external_ids.tvdb_id}) }}"  style="background-color:{{palette.2}}; border-color:{{palette.2}};">
-                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                          Ajouter
+                        <a class="btn btn-default" href="{{ path_for('paused', {'tvdbId': id,'etat': 0}) }}">
+                          <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                          Cacher les extras
                         </a>
                       {% endif %}
-                    </div>
-                    <div class="series-detail">
-                      <h2>Synopsis</h2>
-                      <p class="lead">{{overview}}</p>
-                      {% for actor in actors %}
-                          {% if loop.first %}
-                            <h2>Acteurs</h2>
-                          {% endif %}
-                          <img src="{{actor.image.small}}" alt="..." class="img-responsive img-thumbnail" width="75" style="padding:2px;">
-                      {% endfor %}
-                    </div>
-                </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-<div>
-<div class="container-fluid" style="padding:0; margin:0px;">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 col-lg-3">
-        <h3>Production</h3>
-        <dl>
-            <dt>Chaîne :</dt>
-            <dd><span class="label label-default">
-                <em>{{network}}</em>
-            </span></dd>
-            <dt>Première diffusion :</dt>
-            <dd><small class="firstAired">{{firstAired.date|date('l d F Y')}}</small></dd>
-            <dt>Diffusée le :</dt>
-            <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
-            <dt>Notée :</dt>
-            <dd><span class="label label-default">{{vote_average}}</span></dd>
-        </dl>
-      </div>
-      <div class="col-md-9 col-lg-9">
-        <div class="nav nav-pills list-seasons">
-          <h3>Saison(s) :</h3>
-          {% for key, season in seasons %}
-            <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">{% if key == 0 %}Extra{% else %}{{key}}{% endif %}</a>
-          {% endfor %}
-        </div>
-        <div class="episode-detailed">
-          <div class="tab-content">
-            {% for key, season in seasons %}
-              <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
-                {% for key, ep in season %}
-                  <div class="episode">
-                    <div class="episode-inner row">
-                      <div class="episode-thumbnail col-xs-3 col-md-3 col-sm-3" style="padding:0px;">
-                        <img src="{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" class="img-responsive" alt="">
-                      </div>
-                      <div class="episode-content col-xs-9 col-sm-9 col-md-9" style="padding:0px; padding-left:2px;">
-                        <h4 style="padding-top: 0px; margin-top: 0px;">{{ep.number}}. {{ep.name}}</h4>
-                        <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
-                        <p class="episode-overview">
-                        {% if ep.overview != null %}
-                          {{ep.overview}}
-                        {% else %}
-                          Nous ne disposons pas d'un résumé traduit en français.
-                        {% endif %}
-                        </p>
-                      </div>
-                    </div>
+                      {% if config.paused == 1%}
+                        <a class="btn btn-success" href="{{ path_for('paused', {'tvdbId': id,'etat': 0}) }}">
+                          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                          Reprendre
+                        </a>
+                      {% else %}
+                        <a class="btn btn-warning" href="{{ path_for('paused', {'tvdbId': id,'etat': 1}) }}">
+                          <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+                          Pause
+                        </a>
+                      {% endif %}
+                      <a class="btn btn-info">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        Editer
+                      </a>
+                      <a class="btn btn-danger" href="{{ path_for('delete', {'tvdbId': id}) }}">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        Retirer
+                      </a>
+                    {% else %}
+                      <a class="btn btn-success" href="{{ path_for('add', {'tvdbId': id}) }}"  style="background-color:{{palette.2}}; border-color:{{palette.2}};">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        Ajouter
+                      </a>
+                    {% endif %}
                   </div>
-                {% endfor %}
+                  <div class="series-detail">
+                    <h2>Synopsis</h2>
+                    <p class="lead">{{overview}}</p>
+                </div>
+              </div>
+          </div>
+          <h3>Acteurs :</h3>
+          <div class="row" style="text-align:center;">
+            {% for actor in actors %}
+              <div class="col-md-2">
+                  <img src="{{actor.image.small}}" width="75%" alt="{{actor.name}}" class="img-responsive img-thumbnail">
               </div>
             {% endfor %}
           </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div>
+<div class="container-fluid" style="padding:0; margin:0px; background-color:white;">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Production</h3>
+      <dl>
+          <dt>Chaîne :</dt>
+          <dd><span class="label label-default">
+              <em>{{network}}</em>
+          </span></dd>
+          <dt>Première diffusion :</dt>
+          <dd><small class="firstAired">{{firstAired.date|date('l d F Y')}}</small></dd>
+          <dt>Diffusée le :</dt>
+          <dd><small>{{last_air_date|date('l d F Y')}}</small></dd>
+          <dt>Notée :</dt>
+          <dd><span class="label label-default">{{vote_average}}</span></dd>
+      </dl>
+    </div>
+    <div class="col-md-9">
+      <div class="list-seasons">
+        <h3>Saison(s) :</h3>
+          {% for key, season in seasons %}
+            <a data-toggle="tab" href="{% if key == 1 %}#home{% else %}#season{{key}}{% endif %}">{% if key == 0 %}Extra{% else %}{{key}}{% endif %}</a>
+          {% endfor %}
+      </div>
+      <div class="episode-detailed">
+        <div class="tab-content">
+          {% for key, season in seasons %}
+            <div id="{% if key == 1 %}home{% else %}season{{key}}{% endif %}" class="tab-pane {% if key == 1 %}in active{% endif %}">
+              {% for key, ep in season %}
+                <div class="episode">
+                  <div class="episode-inner row">
+                    <div class="episode-thumbnail col-md-3" style="padding:0px;">
+                      <img src="{% if ep.thumbnail != null %}{{ep.thumbnail}}{% else %}{{fanArt}}{% endif %}" class="responsive-img" alt="">
+                    </div>
+                    <div class="episode-content col-md-9" style="padding:0px; padding-left:10px;">
+                      <h4 style="padding-top: 0px; margin-top: 0px;">{{ep.number}}. {{ep.name}}</h4>
+                      <h6>{{ep.firstAired.date|date("l d F Y")}}</h6>
+                      <p class="episode-overview">
+                      {% if ep.overview != null %}
+                        {{ep.overview}}
+                      {% else %}
+                        Nous ne disposons pas d'un résumé traduit en français.
+                      {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>

@@ -22,79 +22,89 @@ class TvController extends Controller {
     $data = [];
     $id   = $args['tvdbId'];
 
-    $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
-    $data = $serie['serie'];
-    $data = $this->ObjecttoArray($data);
-    foreach ($serie['episodes'] as $key => $episode) {
-      if($episode['thumbnail'] != null){
-        $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
-        if(fopen($thumbnailLien, "r")){
-            $thumbnail = $thumbnailLien;
+    if(!file_exists('tmp/'.$id.'.json')){
+      $serie = $this->ObjecttoArray($this->container->tvdb->getSerieEpisodes($id,"fr"));
+      $data = $serie['serie'];
+      $data = $this->ObjecttoArray($data);
+
+      if($data['lastUpdated']['date'] > $this->date){
+        die("ok");
+      }
+      foreach ($serie['episodes'] as $key => $episode) {
+        if($episode['thumbnail'] != null){
+          $thumbnailLien = "http://thetvdb.com/banners/".$episode['thumbnail'];
+          if(fopen($thumbnailLien, "r")){
+              $thumbnail = $thumbnailLien;
+          }
+          else{
+              $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+          }
         }
         else{
-            $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+          $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+        }
+
+        $dir = dirname(dirname(__DIR__));
+        $url = $dir.'/public/tmp/thumbnails/'.$id.'_'.$key.'.jpg';
+        $urlNo = '/tmp/thumbnails/'.$id.'_'.$key.'.jpg';
+
+        if(!file_exists($url)){
+          $img = $this->container->resize->make($thumbnail);
+          $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
+          $img->crop(227, 127);
+          $img->save($url);
+        }
+
+        $thumbnail = $urlNo;
+
+        $data['seasons'][$episode['season']][$episode['number']] = [
+          'name' => $episode['name'],
+          'season' => $episode['season'],
+          'number' => $episode['number'],
+          'firstAired' => $episode['firstAired'],
+          'overview' => $episode['overview'],
+          'rating' => $episode['rating'],
+          'ratingCount' => $episode['ratingCount'],
+          'thumbnail' => $thumbnail
+        ];
+      }
+      $actors = $this->ObjecttoArray($this->container->tvdb->getActors($id));
+      $data['actors'] =[];
+      foreach ($actors as $key => $actor) {
+        if($key >= 6) break;
+        if($actor['image'] != null){
+          $imageLien = "http://thetvdb.com/banners/".$actor['image'];
+          $image = $this->multiRezise($imageLien, $actor['id'], "tmp/actors",['small']);
+          $data['actors'][$key]['id'] = $actor['id'];
+          $data['actors'][$key]['name'] = $actor['name'];
+          $data['actors'][$key]['image'] = $image;
         }
       }
-      else{
-        $thumbnail = "http://thetvdb.com/banners/".$data['fanArt'];
+
+      $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
+      $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
+      $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
+
+      if(isset($this->getConfig()[$id]['palette'])) {
+        $data['palette'] = $this->getConfig()[$id]['palette'];
       }
-
-      $dir = dirname(dirname(__DIR__));
-      $url = $dir.'/public/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
-      $urlNo = '/tmp/thumbnail/'.$id.'_'.$key.'_thumbnail.jpg';
-
-      if(!file_exists($url)){
-        $img = $this->container->resize->make($thumbnail);
-        $img->resize(227, null, function ($constraint) {$constraint->aspectRatio();});
-        $img->crop(227, 127);
-        $img->save($url);
+      else {
+        $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
+        foreach ($ColorThief as $key => $rgb) {
+          $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
+        }
+        $send = $this->setConfig($palette);
+        $data['palette'] = $send[$id]['palette'];
       }
-
-      $thumbnail = $urlNo;
-
-      $data['seasons'][$episode['season']][$episode['number']] = [
-        'name' => $episode['name'],
-        'season' => $episode['season'],
-        'number' => $episode['number'],
-        'firstAired' => $episode['firstAired'],
-        'overview' => $episode['overview'],
-        'rating' => $episode['rating'],
-        'ratingCount' => $episode['ratingCount'],
-        'thumbnail' => $thumbnail
-      ];
-    }
-    $actors = $this->ObjecttoArray($this->container->tvdb->getActors($id));
-    $data['actors'] =[];
-    foreach ($actors as $key => $actor) {
-      if($key >= 10) break;
-      if($actor['image'] != null){
-        $imageLien = "http://thetvdb.com/banners/".$actor['image'];
-        $image = $this->multiRezise($imageLien, $actor['id'], "tmp/actors",['small']);
-        $data['actors'][$key]['id'] = $actor['id'];
-        $data['actors'][$key]['name'] = $actor['name'];
-        $data['actors'][$key]['image'] = $image;
-      }
+      $cache = fopen('tmp/'.$id.'.json', "w");
+      $data = json_encode($data);
+      fputs($cache, $data);
+    }else{
+        $cache = fopen('tmp/'.$id.'.json', "r");
+        $data = fgets($cache);
     }
 
-    $poster = $this->container->tvdb->getBannersFiltered($id, "poster");
-    $nameposter = "http://thetvdb.com/banners/".$poster[0]->path;
-    $data['poster_path'] = $this->multiRezise($nameposter, $id, "tmp/covers",['medium']);
-
-    if(isset($this->getConfig()[$id]['palette'])) {
-      $data['palette'] = $this->getConfig()[$id]['palette'];
-    }
-    else {
-      $ColorThief = ColorThief::getPalette("http://".$_SERVER['SERVER_NAME'].$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
-
-      foreach ($ColorThief as $key => $rgb) {
-        $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
-      }
-      $send = $this->setConfig($palette);
-      $data['palette'] = $send[$id]['palette'];
-    }
-
-    //$this->getArray($data);
-
+    $data = $this->ObjecttoArray(json_decode($data));
     $this->render($response, 'tv/tv.twig',$data);
   }
 

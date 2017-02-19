@@ -7,9 +7,11 @@ use WriteiniFile\WriteiniFile;
 class Controller {
 
     protected $container;
+    public    $date;
 
     function __construct($container) {
       $this->container = $container;
+      $this->date      = date("Y-m-d H:i:s.u");
     }
 
     function render($response, $file, $params= []) {
