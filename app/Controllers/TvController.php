@@ -89,9 +89,8 @@ class TvController extends Controller {
 
       $ColorThief = ColorThief::getPalette("http://test.aur3l.fr".$data['poster_path']['medium'], 4,25, array('w' => 200, 'h' => 294));
       foreach ($ColorThief as $key => $rgb) {
-        $palette[$id]['palette'][$key] = $this->rgb2hex($rgb);
+        $data['palette'][$key] = $this->rgb2hex($rgb);
       }
-      $data['palette'] = $send[$id]['palette'];
 
       $cache = fopen('tmp/'.$id.'.json', "w");
       $data = json_encode($data);
